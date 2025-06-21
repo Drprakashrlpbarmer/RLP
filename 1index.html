@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>राष्ट्रीय लोकतांत्रिक पार्टी - बाड़मेर | अल्ट्रा एडवांस वेबसाइट</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --primary: #FF5722;
+            --secondary: #2196F3;
+            --accent: #FFC107;
+            --dark: #1A237E;
+            --light: #F5F5F5;
+            --success: #4CAF50;
+            --party-red: #E53935;
+            --party-blue: #1E88E5;
+            --party-green: #43A047;
+            --party-yellow: #FDD835;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hind', 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Door Opening Animation */
+        #door-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: openDoor 3s forwards;
+        }
+        
+        .door {
+            width: 300px;
+            height: 500px;
+            position: relative;
+            perspective: 1000px;
+        }
+        
+        .door-left, .door-right {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, #8B0000, #B22222, #8B0000);
+            border: 8px solid #DAA520;
+            overflow: hidden;
+        }
+        
+        .door-left {
+            left: 0;
+            transform-origin: left center;
+            animation: openLeft 2.5s forwards;
+        }
+        
+        .door-right {
+            right: 0;
+            transform-origin: right center;
+            animation: openRight 2.5s forwards;
+        }
+        
+        .door-knob {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #DAA520;
+            border-radius: 50%;
+            top: 50%;
+        }
+        
+        .door-left .door-knob {
+            right: 10px;
+        }
+        
+        .door-right .door-knob {
+            left: 10px;
+        }
+        
+        .party-logo-anim {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23FF5722"/><path d="M30,30 L70,30 L70,70 L30,70 Z" fill="%23FFFFFF"/><circle cx="50" cy="50" r="15" fill="%232196F3"/></svg>') no-repeat center;
+            background-size: contain;
+            z-index: 10;
+            opacity: 0;
+            animation: logoAppear 2s 1s forwards;
+        }
+        
+        .fireworks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        @keyframes openLeft {
+            0% { transform: rotateY(0); }
+            100% { transform: rotateY(-100deg); }
+        }
+        
+        @keyframes openRight {
+            0% { transform: rotateY(0); }
+            100% { transform: rotateY(100deg); }
+        }
+        
+        @keyframes logoAppear {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            70% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+        
+        @keyframes openDoor {
+            0% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+        
+        /* Main Container */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(26, 35, 126, 0.95);
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 3px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: slideDown 1s forwards 3s;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: linear-gradient(to right, var(--party-red), var(--party-blue));
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        .party-logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23FF5722"/><path d="M30,30 L70,30 L70,70 L30,70 Z" fill="%23FFFFFF"/><circle cx="50" cy="50" r="15" fill="%232196F3"/></svg>') no-repeat center;
+            background-size: contain;
+            margin-right: 15px;
+            border: 3px solid var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.7);
+        }
+        
+        .party-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .party-name span {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .header-contact {
+            text-align: right;
+        }
+        
+        .contact-info {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 10px;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background: var(--primary);
+            box-shadow: 0 0 15px var(--accent);
+        }
+        
+        nav {
+            background: rgba(33, 33, 33, 0.9);
+            padding: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: block;
+        }
+        
+        .nav-links a:hover {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 87, 34, 0.7);
+        }
+        
+        .nav-links a.active {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 0 15px rgba(33, 150, 243, 0.7);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 80vh;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            transform: scale(0.95);
+            opacity: 0;
+            animation: scaleUp 1s forwards 3.5s;
+            border: 3px solid var(--accent);
+        }
+        
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            width: 90%;
+            max-width: 900px;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 0 20px rgba(255, 193, 7, 0.8), 3px 3px 10px rgba(0, 0, 0, 0.8);
+            line-height: 1.2;
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--party-yellow), 0 0 40px var(--party-yellow); }
+            to { text-shadow: 0 0 20px #fff, 0 0 30px var(--accent), 0 0 40px var(--accent), 0 0 50px var(--accent); }
+        }
+        
+        .hero-title span {
+            color: var(--accent);
+            display: block;
+            font-size: 3.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--light);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border: 3px solid var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.6);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 3px solid var(--accent);
+            margin-left: 15px;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .floating-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+        
+        /* Sections */
+        .section {
+            background: rgba(26, 35, 126, 0.9);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 3px solid var(--accent);
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        
+        .section:nth-child(1) {
+            animation: fadeInUp 1s forwards 4s;
+        }
+        
+        .section:nth-child(2) {
+            animation: fadeInUp 1s forwards 4.2s;
+        }
+        
+        .section:nth-child(3) {
+            animation: fadeInUp 1s forwards 4.4s;
+        }
+        
+        .section:nth-child(4) {
+            animation: fadeInUp 1s forwards 4.6s;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--accent);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .leader-info {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 2px solid var(--party-blue);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .leader-info:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .leader-photo {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 5px solid var(--accent);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 25px rgba(255, 193, 7, 0.7);
+        }
+        
+        .leader-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .leader-name {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .leader-position {
+            font-size: 1.4rem;
+            color: var(--party-blue);
+            margin-bottom: 20px;
+        }
+        
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .achievement-card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid var(--success);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+            border-left: 5px solid var(--accent);
+        }
+        
+        .achievement-title {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .achievement-title i {
+            margin-right: 10px;
+            color: var(--success);
+        }
+        
+        /* Membership Form */
+        .membership-form {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            background: rgba(0, 0, 0, 0.7);
+            outline: none;
+            box-shadow: 0 0 15px rgba(255, 87, 34, 0.5);
+        }
+        
+        .photo-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .photo-upload:hover {
+            border-color: var(--primary);
+            background: rgba(0, 0, 0, 0.4);
+        }
+        
+        .photo-upload i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .submit-btn {
+            background: var(--success);
+            width: 100%;
+            padding: 18px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            grid-column: span 2;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+        
+        .submit-btn:hover {
+            background: #3d8b40;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.6);
+        }
+        
+        /* Members List */
+        .members-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .member-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--accent);
+        }
+        
+        .member-photo {
+            height: 200px;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--dark);
+        }
+        
+        .member-info {
+            padding: 20px;
+        }
+        
+        .member-name {
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .member-id {
+            color: var(--party-blue);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            transform: translateY(100%);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* Comments Section */
+        .comments-section {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .comment-form {
+            margin-bottom: 30px;
+        }
+        
+        .comment-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            min-height: 120px;
+            transition: all 0.3s ease;
+        }
+        
+        .comment-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(255, 87, 34, 0.5);
+        }
+        
+        .comments-list {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        .comment {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--primary);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .comment-author {
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .comment-date {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(33, 33, 33, 0.95);
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 50px;
+            text-align: center;
+            border-top: 5px solid var(--accent);
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .footer-title {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+        }
+        
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            text-align: center;
+        }
+        
+        .contact-item i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+        
+        /* Animations */
+        @keyframes slideDown {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes scaleUp {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Admin Panel */
+        .admin-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .admin-btn {
+            background: var(--party-red);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .admin-btn:hover {
+            background: #c62828;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(229, 57, 53, 0.6);
+        }
+        
+        /* Admin Panel Modal */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            padding: 20px;
+            overflow: auto;
+        }
+        
+        .admin-content {
+            background: var(--dark);
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 50px rgba(255, 193, 7, 0.5);
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .close-admin {
+            background: var(--party-red);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .admin-table th, .admin-table td {
+            border: 1px solid var(--accent);
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .admin-table th {
+            background: rgba(255, 193, 7, 0.2);
+            color: var(--accent);
+        }
+        
+        .admin-table tr:nth-child(even) {
+            background: rgba(0,0,0,0.2);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-title span {
+                font-size: 2.5rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .admin-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .party-logo {
+                margin-bottom: 20px;
+            }
+            
+            .header-contact {
+                text-align: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+            }
+            
+            .nav-links li {
+                margin: 5px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-title span {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .btn {
+                display: block;
+                margin-bottom: 15px;
+                width: 100%;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section {
+                padding: 25px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .leader-name {
+                font-size: 1.8rem;
+            }
+            
+            .achievements {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-panel {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .admin-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Door Opening Animation with Fireworks -->
+    <div id="door-animation">
+        <div class="door">
+            <div class="door-left">
+                <div class="door-knob"></div>
+            </div>
+            <div class="door-right">
+                <div class="door-knob"></div>
+            </div>
+            <div class="party-logo-anim"></div>
+        </div>
+        <div class="fireworks" id="fireworks"></div>
+    </div>
+    
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Admin Panel Access -->
+    <div class="admin-panel">
+        <div class="admin-btn">
+            <i class="fas fa-lock"></i> एडमिन पैनल
+        </div>
+    </div>
+    
+    <!-- Admin Modal -->
+    <div class="admin-modal">
+        <div class="admin-content">
+            <div class="admin-header">
+                <h2>एडमिन पैनल - सदस्य डेटाबेस</h2>
+                <button class="close-admin">&times;</button>
+            </div>
+            <div class="admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>रसीद संख्या</th>
+                            <th>नाम</th>
+                            <th>पिता का नाम</th>
+                            <th>मोबाइल</th>
+                            <th>पता</th>
+                            <th>यूनिक कोड</th>
+                            <th>तारीख</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-table-body">
+                        <!-- डेटा यहाँ जाएगा -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-top">
+                <div class="party-logo">
+                    <div class="logo"></div>
+                    <div class="party-name">
+                        राष्ट्रीय लोकतांत्रिक पार्टी
+                        <span>बाड़मेर जिला कार्यालय</span>
+                    </div>
+                </div>
+                <div class="header-contact">
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i> 09414-118677
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i> hanumanbeniwaloffice@gmail.com
+                    </div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">होम</a></li>
+                    <li><a href="#">हमारे बारे में</a></li>
+                    <li><a href="#">पार्टी विचारधारा</a></li>
+                    <li><a href="#">सदस्यता</a></li>
+                    <li><a href="#">गैलरी</a></li>
+                    <li><a href="#">संपर्क</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    जनता का हक, जनता की बात
+                    <span>भ्रष्टाचार मुक्त राजस्थान</span>
+                </h1>
+                <p class="hero-subtitle">राष्ट्रीय लोकतांत्रिक पार्टी - बाड़मेर के साथ न्याय, विकास और समृद्धि की नई यात्रा</p>
+                <a href="#membership" class="btn">सदस्य बनें</a>
+                <a href="#about" class="btn btn-secondary">और जानें</a>
+            </div>
+            
+            <div class="floating-icons">
+                <div class="floating-icon" style="top: 10%; left: 5%;"><i class="fas fa-star"></i></div>
+                <div class="floating-icon" style="top: 20%; left: 80%;"><i class="fas fa-heart"></i></div>
+                <div class="floating-icon" style="top: 40%; left: 15%;"><i class="fas fa-flag"></i></div>
+                <div class="floating-icon" style="top: 70%; left: 90%;"><i class="fas fa-star"></i></div>
+                <div class="floating-icon" style="top: 85%; left: 25%;"><i class="fas fa-heart"></i></div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section class="section" id="about">
+            <h2 class="section-title">हमारे नेता और उपलब्धियाँ</h2>
+            
+            <div class="about-grid">
+                <div class="leader-info">
+                    <div class="leader-photo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23f0f0f0'/%3E%3Ccircle cx='100' cy='80' r='40' fill='%23c9c9c9'/%3E%3Crect x='60' y='120' width='80' height='60' fill='%23c9c9c9'/%3E%3Ctext x='100' y='190' font-family='Arial' font-size='20' text-anchor='middle' fill='%23000'%3Eहनुमान जी बेनीवाल%3C/text%3E%3C/svg%3E" alt="हनुमान जी बेनीवाल">
+                    </div>
+                    <h3 class="leader-name">हनुमान जी बेनीवाल</h3>
+                    <div class="leader-position">संस्थापक एवं राष्ट्रीय अध्यक्ष</div>
+                    <p>हनुमान बेनीवाल राजस्थान के एक किसान नेता और भ्रष्टाचार विरोधी राजनेता हैं। 2018 में उन्होंने RLP की स्थापना की और नागौर से दो बार लोकसभा सांसद चुने गए। बाड़मेर में उन्होंने किसान-युवा आंदोलनों की अगुवाई की और पुलिस भर्ती घोटाले को उजागर किया।</p>
+                </div>
+                
+                <div class="leader-info">
+                    <div class="leader-photo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23f0f0f0'/%3E%3Ccircle cx='100' cy='80' r='40' fill='%23c9c9c9'/%3E%3Crect x='60' y='120' width='80' height='60' fill='%23c9c9c9'/%3E%3Ctext x='100' y='190' font-family='Arial' font-size='20' text-anchor='middle' fill='%23000'%3Eडॉ. प्रकाश चौधरी%3C/text%3E%3C/svg%3E" alt="डॉ. प्रकाश चौधरी">
+                    </div>
+                    <h3 class="leader-name">डॉ. प्रकाश चौधरी</h3>
+                    <div class="leader-position">जिला अध्यक्ष, बाड़मेर</div>
+                    <p>डॉ. प्रकाश चौधरी बाड़मेर जिले के प्रमुख नेता और समाजसेवी हैं। उन्होंने जिले में पार्टी को मजबूत बनाने और जनता के बीच पार्टी की पहुँच बढ़ाने में महत्वपूर्ण भूमिका निभाई है। किसानों और युवाओं के मुद्दों पर उनकी सक्रिय भूमिका के लिए जाने जाते हैं।</p>
+                </div>
+            </div>
+            
+            <div class="achievements">
+                <div class="achievement-card">
+                    <h3 class="achievement-title"><i class="fas fa-tractor"></i> किसान हुंकार रैलियाँ</h3>
+                    <p>किसानों के मुद्दों को लेकर बाड़मेर व जयपुर जैसे जिलों में विशाल "किसान हुंकार" रैलियाँ आयोजित करना, जिसमें हजारों किसानों ने भाग लिया और अपनी आवाज बुलंद की।</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <h3 class="achievement-title"><i class="fas fa-graduation-cap"></i> भर्ती घोटाला उजागर</h3>
+                    <p>RPSC SI भर्ती घोटाले के खिलाफ राज्यव्यापी आंदोलन छेड़ना, जिसमें युवा और छात्रों ने बड़ी संख्या में समर्थन दिया और भ्रष्टाचार के खिलाफ आवाज उठाई।</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <h3 class="achievement-title"><i class="fas fa-fist-raised"></i> पार्टी की मजबूती</h3>
+                    <p>स्थानीय नेताओं के कांग्रेस में जाने के बाद भी पार्टी की रफ्तार बनाए रखना, खासकर बाड़मेर में, जहाँ पार्टी ने जनता का विश्वास जीता है।</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Membership Section -->
+        <section class="section" id="membership">
+            <h2 class="section-title">पार्टी सदस्यता फॉर्म</h2>
+            
+            <div class="membership-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="fullname">पूरा नाम</label>
+                        <input type="text" id="fullname" class="form-control" placeholder="अपना पूरा नाम दर्ज करें" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fathername">पिता का नाम</label>
+                        <input type="text" id="fathername" class="form-control" placeholder="पिता का नाम दर्ज करें" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dob">जन्म तिथि</label>
+                        <input type="date" id="dob" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mobile">मोबाइल नंबर</label>
+                        <input type="tel" id="mobile" class="form-control" placeholder="अपना मोबाइल नंबर दर्ज करें" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">ईमेल</label>
+                        <input type="email" id="email" class="form-control" placeholder="अपना ईमेल दर्ज करें">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">पूरा पता</label>
+                        <textarea id="address" class="form-control" rows="3" placeholder="अपना पूरा पता दर्ज करें" required></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>फोटो अपलोड करें</label>
+                        <div class="photo-upload" id="photo-upload">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>फोटो अपलोड करने के लिए क्लिक करें या फोटो को यहाँ ड्रैग करें</p>
+                            <p class="small">(अधिकतम आकार: 2MB, स्वीकृत प्रारूप: JPG, PNG)</p>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submit-form">सदस्यता जमा करें</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Members List Section -->
+        <section class="section">
+            <h2 class="section-title">हमारे सदस्य</h2>
+            
+            <div class="members-list" id="members-list">
+                <!-- सदस्यों की सूची यहाँ लोड होगी -->
+            </div>
+        </section>
+        
+        <!-- Gallery Section -->
+        <section class="section">
+            <h2 class="section-title">गैलरी</h2>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-img" style="background: linear-gradient(45deg, #ff9a9e, #fad0c4);"></div>
+                    <div class="gallery-caption">किसान हुंकार रैली, बाड़मेर 2018</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-img" style="background: linear-gradient(45deg, #a1c4fd, #c2e9fb);"></div>
+                    <div class="gallery-caption">हनुमान बेनीवाल बाड़मेर दौरे पर</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-img" style="background: linear-gradient(45deg, #ffecd2, #fcb69f);"></div>
+                    <div class="gallery-caption">मार्च 2023 रैली का दृश्य</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-img" style="background: linear-gradient(45deg, #84fab0, #8fd3f4);"></div>
+                    <div class="gallery-caption">SI भर्ती प्रदर्शन, मई 2025</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-img" style="background: linear-gradient(45deg, #d4fc79, #96e6a1);"></div>
+                    <div class="gallery-caption">जिला अध्यक्ष डॉ. प्रकाश चौधरी सभा को संबोधित करते हुए</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-img" style="background: linear-gradient(45deg, #a6c0fe, #f68084);"></div>
+                    <div class="gallery-caption">युवा संवाद कार्यक्रम</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Comments Section -->
+        <section class="section">
+            <h2 class="section-title">जनता की आवाज</h2>
+            
+            <div class="comments-section">
+                <div class="comment-form">
+                    <textarea class="comment-input" placeholder="आपकी प्रतिक्रिया, सुझाव या विचार यहाँ लिखें..."></textarea>
+                    <button class="btn">प्रतिक्रिया जमा करें</button>
+                </div>
+                
+                <div class="comments-list">
+                    <div class="comment">
+                        <div class="comment-header">
+                            <div class="comment-author">राजेश कुमार</div>
+                            <div class="comment-date">15 जून 2025</div>
+                        </div>
+                        <p>बाड़मेर में RLP की किसानों के लिए किए गए कार्य सराहनीय हैं। हम आपके साथ हैं!</p>
+                    </div>
+                    
+                    <div class="comment">
+                        <div class="comment-header">
+                            <div class="comment-author">सरिता देवी</div>
+                            <div class="comment-date">12 जून 2025</div>
+                        </div>
+                        <p>हनुमान जी बेनीवाल और डॉ. प्रकाश चौधरी जी ने हमारे गाँव की समस्याओं को सुना और उनका समाधान किया। धन्यवाद!</p>
+                    </div>
+                    
+                    <div class="comment">
+                        <div class="comment-header">
+                            <div class="comment-author">विक्रम सिंह</div>
+                            <div class="comment-date">10 जून 2025</div>
+                        </div>
+                        <p>8 जून की जनसुनवाई कार्यक्रम में भाग लिया। बहुत अच्छा लगा कि हमारी बात सुनी गई।</p>
+                    </div>
+                    
+                    <div class="comment">
+                        <div class="comment-header">
+                            <div class="comment-author">मोहन लाल</div>
+                            <div class="comment-date">8 जून 2025</div>
+                        </div>
+                        <p>भ्रष्टाचार के खिलाफ आपका संघर्ष प्रेरणादायक है। आगे बढ़ते रहिए!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer>
+            <h2 class="footer-title">राष्ट्रीय लोकतांत्रिक पार्टी, बाड़मेर</h2>
+            
+            <div class="footer-contact">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>जिला कार्यालय: बाड़मेर, राजस्थान</p>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>फोन: 09414-118677</p>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>ईमेल: rlpbarmer@example.com</p>
+                </div>
+            </div>
+            
+            <div class="social-icons" style="justify-content: center; margin-bottom: 20px;">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 राष्ट्रीय लोकतांत्रिक पार्टी, बाड़मेर। सर्वाधिकार सुरक्षित।
+                <p>वेबसाइट डिजाइन एवं विकास: डॉ. प्रकाश चौधरी, जिला अध्यक्ष</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Door Animation and Fireworks
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize particles background
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 120, density: { enable: true, value_area: 1000 } },
+                    color: { value: "#FFC107" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.7, random: true },
+                    size: { value: 4, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#FF5722",
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 3,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "repulse" },
+                        onclick: { enable: true, mode: "push" },
+                        resize: true
+                    }
+                }
+            });
+            
+            // Remove door animation after 3 seconds
+            setTimeout(function() {
+                document.getElementById('door-animation').style.display = 'none';
+            }, 3000);
+            
+            // Create floating icons
+            const heroSection = document.querySelector('.hero');
+            const icons = ['fa-star', 'fa-heart', 'fa-flag', 'fa-certificate', 'fa-bullhorn'];
+            
+            for (let i = 0; i < 15; i++) {
+                const icon = document.createElement('div');
+                icon.className = 'floating-icon';
+                icon.innerHTML = `<i class="fas ${icons[Math.floor(Math.random() * icons.length)]}"></i>`;
+                
+                // Random position
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const delay = Math.random() * 15;
+                
+                icon.style.left = `${left}%`;
+                icon.style.top = `${top}%`;
+                icon.style.animationDelay = `${delay}s`;
+                icon.style.fontSize = `${Math.random() * 2 + 1}rem`;
+                
+                document.querySelector('.floating-icons').appendChild(icon);
+            }
+            
+            // Form submission
+            document.getElementById('submit-form').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Collect form data
+                const formData = {
+                    fullname: document.getElementById('fullname').value,
+                    fathername: document.getElementById('fathername').value,
+                    dob: document.getElementById('dob').value,
+                    mobile: document.getElementById('mobile').value,
+                    email: document.getElementById('email').value,
+                    address: document.getElementById('address').value,
+                    receiptNo: 'RLP-BM-' + Date.now(),
+                    uniqueCode: Math.random().toString(36).substr(2, 9).toUpperCase(),
+                    date: new Date().toLocaleDateString('hi-IN')
+                };
+                
+                // Save to localStorage
+                let members = JSON.parse(localStorage.getItem('members')) || [];
+                members.push(formData);
+                localStorage.setItem('members', JSON.stringify(members));
+                
+                // Show success message
+                alert(`सदस्यता सफलतापूर्वक जमा हो गई!\n\nरसीद संख्या: ${formData.receiptNo}\nयूनिक कोड: ${formData.uniqueCode}\n\nधन्यवाद! आपकी जानकारी सुरक्षित रखी गई है।`);
+                
+                // Reset form
+                document.querySelector('form').reset();
+                
+                // Refresh members list
+                loadMembers();
+            });
+            
+            // Load members from localStorage
+            function loadMembers() {
+                const members = JSON.parse(localStorage.getItem('members')) || [];
+                const container = document.getElementById('members-list');
+                container.innerHTML = '';
+                
+                members.forEach(member => {
+                    const card = document.createElement('div');
+                    card.className = 'member-card';
+                    card.innerHTML = `
+                        <div class="member-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">${member.fullname}</h3>
+                            <div class="member-id">पिता: ${member.fathername}</div>
+                            <div class="member-id">मोबाइल: ${member.mobile}</div>
+                            <div class="member-id">रसीद सं: ${member.receiptNo}</div>
+                            <div class="member-id">यूनिक कोड: ${member.uniqueCode}</div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+            
+            // Load members on page load
+            loadMembers();
+            
+            // Admin panel access
+            document.querySelector('.admin-btn').addEventListener('click', function() {
+                const password = prompt("एडमिन पैनल एक्सेस के लिए पासवर्ड दर्ज करें:");
+                if (password === "RLP@Barmer2025") {
+                    showAdminPanel();
+                } else {
+                    alert("गलत पासवर्ड! कृपया पुनः प्रयास करें।");
+                }
+            });
+            
+            // Close admin panel
+            document.querySelector('.close-admin').addEventListener('click', function() {
+                document.querySelector('.admin-modal').style.display = 'none';
+            });
+            
+            // Show admin panel with data
+            function showAdminPanel() {
+                const members = JSON.parse(localStorage.getItem('members')) || [];
+                const tableBody = document.getElementById('admin-table-body');
+                tableBody.innerHTML = '';
+                
+                members.forEach(member => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${member.receiptNo}</td>
+                        <td>${member.fullname}</td>
+                        <td>${member.fathername}</td>
+                        <td>${member.mobile}</td>
+                        <td>${member.address.substring(0, 30)}...</td>
+                        <td>${member.uniqueCode}</td>
+                        <td>${member.date}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+                
+                document.querySelector('.admin-modal').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
