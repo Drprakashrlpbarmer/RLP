@@ -1808,6 +1808,87 @@
         </div>
     </section>
 
+    <!-- admin Section -->
+<!DOCTYPE html><html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel - RLP</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Login Screen -->
+  <div id="loginScreen" class="min-h-screen flex items-center justify-center">
+    <div class="bg-white p-6 rounded shadow w-full max-w-sm">
+      <h2 class="text-2xl font-bold text-center mb-4">एडमिन लॉगिन</h2>
+      <input type="text" id="adminUser" placeholder="यूज़रनेम" class="w-full p-2 border mb-3 rounded" />
+      <input type="password" id="adminPass" placeholder="पासवर्ड" class="w-full p-2 border mb-3 rounded" />
+      <button onclick="login()" class="w-full bg-blue-600 text-white p-2 rounded">लॉगिन करें</button>
+      <p id="loginError" class="text-red-500 mt-2 hidden">गलत यूज़रनेम या पासवर्ड</p>
+    </div>
+  </div>  <!-- Admin Panel -->  <div id="adminPanel" style="display:none;" class="p-6">
+    <h1 class="text-3xl font-bold mb-6 text-center">RLP एडमिन पैनल</h1><!-- Leader Upload Section -->
+<div class="bg-white rounded shadow p-4 mb-6">
+  <h2 class="text-xl font-bold mb-3">नेता जोड़ें</h2>
+  <input type="text" id="leaderName" placeholder="नेता का नाम" class="w-full p-2 border rounded mb-2" />
+  <input type="text" id="leaderPost" placeholder="पद/स्थिति" class="w-full p-2 border rounded mb-2" />
+  <input type="file" id="leaderPhoto" accept="image/*" class="w-full p-2 border rounded mb-2" />
+  <textarea id="leaderDetail" placeholder="नेता का विवरण" class="w-full p-2 border rounded mb-2"></textarea>
+  <button onclick="addLeader()" class="bg-green-600 text-white px-4 py-2 rounded">नेता जोड़ें</button>
+</div>
+
+<!-- News Upload Section -->
+<div class="bg-white rounded shadow p-4 mb-6">
+  <h2 class="text-xl font-bold mb-3">समाचार जोड़ें</h2>
+  <input type="text" id="newsTitle" placeholder="समाचार शीर्षक" class="w-full p-2 border rounded mb-2" />
+  <textarea id="newsDetail" placeholder="समाचार विवरण" class="w-full p-2 border rounded mb-2"></textarea>
+  <input type="text" id="newsVideo" placeholder="वीडियो लिंक (YouTube)" class="w-full p-2 border rounded mb-2" />
+  <input type="file" id="newsImage" accept="image/*" class="w-full p-2 border rounded mb-2" />
+  <button onclick="addNews()" class="bg-yellow-600 text-white px-4 py-2 rounded">समाचार जोड़ें</button>
+</div>
+
+<!-- Gallery Upload Section -->
+<div class="bg-white rounded shadow p-4">
+  <h2 class="text-xl font-bold mb-3">गैलरी में फोटो जोड़ें</h2>
+  <input type="file" id="galleryImages" multiple accept="image/*" class="w-full p-2 border rounded mb-2" />
+  <button onclick="uploadGallery()" class="bg-purple-600 text-white px-4 py-2 rounded">फोटो अपलोड करें</button>
+</div>
+
+  </div>  <script>
+    const loginScreen = document.getElementById('loginScreen');
+    const adminPanel = document.getElementById('adminPanel');
+    const loginError = document.getElementById('loginError');
+
+    function login() {
+      const user = document.getElementById('adminUser').value.trim();
+      const pass = document.getElementById('adminPass').value.trim();
+      if (user === 'admin' && pass === 'admin123') {
+        loginScreen.style.display = 'none';
+        adminPanel.style.display = 'block';
+      } else {
+        loginError.classList.remove('hidden');
+      }
+    }
+
+    function addLeader() {
+      alert('✅ नेता जोड़ा गया (यह डेटा DB में सेव करने के लिए backend की ज़रूरत होगी)');
+    }
+
+    function addNews() {
+      alert('✅ समाचार जोड़ा गया (यह डेटा DB में सेव करने के लिए backend की ज़रूरत होगी)');
+    }
+
+    function uploadGallery() {
+      alert('✅ गैलरी में फोटो अपलोड किए गए (यह फाइलें server पर सेव करने के लिए backend चाहिए)');
+    }
+  </script></body>
+</html>
+
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="container mx-auto px-4">
@@ -2477,83 +2558,3 @@
     </script>
 </body>
     </html>
-<!-- admin Section -->
-<!DOCTYPE html><html lang="hi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Panel - RLP</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-    }
-  </style>
-</head>
-<body class="bg-gray-100">
-  <!-- Login Screen -->
-  <div id="loginScreen" class="min-h-screen flex items-center justify-center">
-    <div class="bg-white p-6 rounded shadow w-full max-w-sm">
-      <h2 class="text-2xl font-bold text-center mb-4">एडमिन लॉगिन</h2>
-      <input type="text" id="adminUser" placeholder="यूज़रनेम" class="w-full p-2 border mb-3 rounded" />
-      <input type="password" id="adminPass" placeholder="पासवर्ड" class="w-full p-2 border mb-3 rounded" />
-      <button onclick="login()" class="w-full bg-blue-600 text-white p-2 rounded">लॉगिन करें</button>
-      <p id="loginError" class="text-red-500 mt-2 hidden">गलत यूज़रनेम या पासवर्ड</p>
-    </div>
-  </div>  <!-- Admin Panel -->  <div id="adminPanel" style="display:none;" class="p-6">
-    <h1 class="text-3xl font-bold mb-6 text-center">RLP एडमिन पैनल</h1><!-- Leader Upload Section -->
-<div class="bg-white rounded shadow p-4 mb-6">
-  <h2 class="text-xl font-bold mb-3">नेता जोड़ें</h2>
-  <input type="text" id="leaderName" placeholder="नेता का नाम" class="w-full p-2 border rounded mb-2" />
-  <input type="text" id="leaderPost" placeholder="पद/स्थिति" class="w-full p-2 border rounded mb-2" />
-  <input type="file" id="leaderPhoto" accept="image/*" class="w-full p-2 border rounded mb-2" />
-  <textarea id="leaderDetail" placeholder="नेता का विवरण" class="w-full p-2 border rounded mb-2"></textarea>
-  <button onclick="addLeader()" class="bg-green-600 text-white px-4 py-2 rounded">नेता जोड़ें</button>
-</div>
-
-<!-- News Upload Section -->
-<div class="bg-white rounded shadow p-4 mb-6">
-  <h2 class="text-xl font-bold mb-3">समाचार जोड़ें</h2>
-  <input type="text" id="newsTitle" placeholder="समाचार शीर्षक" class="w-full p-2 border rounded mb-2" />
-  <textarea id="newsDetail" placeholder="समाचार विवरण" class="w-full p-2 border rounded mb-2"></textarea>
-  <input type="text" id="newsVideo" placeholder="वीडियो लिंक (YouTube)" class="w-full p-2 border rounded mb-2" />
-  <input type="file" id="newsImage" accept="image/*" class="w-full p-2 border rounded mb-2" />
-  <button onclick="addNews()" class="bg-yellow-600 text-white px-4 py-2 rounded">समाचार जोड़ें</button>
-</div>
-
-<!-- Gallery Upload Section -->
-<div class="bg-white rounded shadow p-4">
-  <h2 class="text-xl font-bold mb-3">गैलरी में फोटो जोड़ें</h2>
-  <input type="file" id="galleryImages" multiple accept="image/*" class="w-full p-2 border rounded mb-2" />
-  <button onclick="uploadGallery()" class="bg-purple-600 text-white px-4 py-2 rounded">फोटो अपलोड करें</button>
-</div>
-
-  </div>  <script>
-    const loginScreen = document.getElementById('loginScreen');
-    const adminPanel = document.getElementById('adminPanel');
-    const loginError = document.getElementById('loginError');
-
-    function login() {
-      const user = document.getElementById('adminUser').value.trim();
-      const pass = document.getElementById('adminPass').value.trim();
-      if (user === 'admin' && pass === 'admin123') {
-        loginScreen.style.display = 'none';
-        adminPanel.style.display = 'block';
-      } else {
-        loginError.classList.remove('hidden');
-      }
-    }
-
-    function addLeader() {
-      alert('✅ नेता जोड़ा गया (यह डेटा DB में सेव करने के लिए backend की ज़रूरत होगी)');
-    }
-
-    function addNews() {
-      alert('✅ समाचार जोड़ा गया (यह डेटा DB में सेव करने के लिए backend की ज़रूरत होगी)');
-    }
-
-    function uploadGallery() {
-      alert('✅ गैलरी में फोटो अपलोड किए गए (यह फाइलें server पर सेव करने के लिए backend चाहिए)');
-    }
-  </script></body>
-</html>
