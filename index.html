@@ -1888,7 +1888,694 @@
     }
   </script></body>
 </html>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>राष्ट्रीय लोकतांत्रिक पार्टी (RLP) | डॉ. प्रकाश काकड़, बाड़मेर</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        /* All previous CSS remains unchanged */
+        
+        /* New styles for Hanuman Beniwal explorer */
+        .hanuman-explorer-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .hanuman-content {
+            background-color: white;
+            border-radius: 10px;
+            max-width: 900px;
+            margin: 40px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .hanuman-header {
+            background: linear-gradient(to right, #e53e3e, #c53030);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .close-hanuman {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .hanuman-tabs {
+            display: flex;
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #ddd;
+            flex-wrap: wrap;
+        }
+        
+        .hanuman-tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            border-right: 1px solid #ddd;
+            min-width: 160px;
+            text-align: center;
+        }
+        
+        .hanuman-tab.active {
+            background-color: white;
+            border-bottom: 3px solid #e53e3e;
+        }
+        
+        .hanuman-body {
+            padding: 30px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .hanuman-section {
+            display: none;
+        }
+        
+        .hanuman-section.active {
+            display: block;
+        }
+        
+        .hanuman-section h3 {
+            color: #c53030;
+            border-bottom: 2px solid #e53e3e;
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        
+        .hanuman-timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .hanuman-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 4px;
+            background-color: #e53e3e;
+        }
+        
+        .hanuman-timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 50px;
+        }
+        
+        .hanuman-timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 16px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #e53e3e;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #e53e3e;
+        }
+        
+        .hanuman-timeline-date {
+            font-weight: bold;
+            color: #e53e3e;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .hanuman-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .hanuman-gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .hanuman-gallery img:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Optimize membership card generation */
+        #memberCard canvas {
+            display: none;
+        }
+        
+        .membership-form {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header Section (unchanged) -->
+    
+    <!-- Hero Section (unchanged) -->
+    
+    <!-- News Ticker (unchanged) -->
+    
+    <!-- About Section (unchanged) -->
+    
+    <!-- Video Section (unchanged) -->
+    
+    <!-- Leaders Section -->
+    <section id="leaders" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 section-title hindi-font">हमारे नेता</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Hanuman Beniwal -->
+                <div class="leader-card card">
+                    <img src="https://i.postimg.cc/vZLQPTqb/5-IYPGA5l-400x400.png" alt="हनुमान बेनीवाल" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1 hindi-font">हनुमान बेनीवाल</h3>
+                        <p class="text-red-600 text-sm mb-2 hindi-font">संस्थापक एवं राष्ट्रीय अध्यक्ष</p>
+                        <p class="text-gray-600 text-sm hindi-font">किसान नेता एवं सांसद</p>
+                        <p class="text-gray-600 text-sm hindi-font">चार बार विधायक, दो बार सांसद</p>
+                        
+                        <div class="mt-4">
+                            <button onclick="openHanumanExplorer()" class="text-red-600 font-medium hindi-font flex items-center">
+                                हनुमान बेनीवाल के बारे में अधिक जानें
+                                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Explorer button added here -->
+                        <div class="mt-3">
+                            <button onclick="openHanumanExplorer()" class="btn btn-red w-full hindi-font">
+                                <i class="fas fa-search mr-2"></i> एक्सप्लोर करें
+                            </button>
+                        </div>
+                        
+                        <div class="leader-socials">
+                            <a href="https://facebook.com/hanumanbeniwal" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/hanumanbeniwal" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a href="https://instagram.com/hanumanbeniwal" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://youtube.com/hanumanbeniwal" target="_blank"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Other leaders remain unchanged -->
+            </div>
+            
+            <!-- Other sections remain unchanged -->
+        </div>
+    </section>
+    
+    <!-- Join Form Section - FIXED -->
+    <section id="join" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 section-title hindi-font">पार्टी से जुड़ें</h2>
+            
+            <div class="max-w-2xl mx-auto">
+                <div class="membership-form">
+                    <form id="joinForm" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-2 text-gray-700 hindi-font">पूरा नाम *</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent hindi-font">
+                        </div>
+                        
+                        <div>
+                            <label for="mobile" class="block text-sm font-medium mb-2 text-gray-700 hindi-font">मोबाइल नंबर *</label>
+                            <input type="tel" id="mobile" name="mobile" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent hindi-font">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-2 text-gray-700 hindi-font">ईमेल</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                        </div>
+                        
+                        <div>
+                            <label for="address" class="block text-sm font-medium mb-2 text-gray-700 hindi-font">पूरा पता *</label>
+                            <textarea id="address" name="address" rows="3" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent hindi-font"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label for="photo" class="block text-sm font-medium mb-2 text-gray-700 hindi-font">अपना फोटो अपलोड करें *</label>
+                            <input type="file" id="photo" name="photo" accept="image/*" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                            <p class="text-xs text-gray-500 mt-1 hindi-font">कृपया स्पष्ट पासपोर्ट साइज फोटो अपलोड करें</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-red hindi-font px-8 py-3 text-lg">
+                                <i class="fas fa-user-plus mr-2"></i> सदस्यता लें
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Membership Card -->
+                <div id="memberCard" class="hidden mt-12 bg-white rounded-xl overflow-hidden shadow-xl border-4 border-red-600">
+                    <div class="bg-red-600 py-4 text-center">
+                        <img src="https://i.postimg.cc/3wkRsgyr/1000006651.jpg" alt="RLP Logo" class="h-16 mx-auto">
+                        <h3 class="text-white text-xl font-bold mt-2 hindi-font">राष्ट्रीय लोकतांत्रिक पार्टी</h3>
+                        <p class="text-white text-sm hindi-font">सदस्यता कार्ड</p>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/3 mb-4 md:mb-0">
+                                <div class="bg-gray-200 border-2 border-dashed rounded-xl w-32 h-40 mx-auto" id="photoPreview"></div>
+                            </div>
+                            
+                            <div class="md:w-2/3 md:pl-6">
+                                <div class="mb-4">
+                                    <h4 class="text-gray-500 text-sm hindi-font">नाम:</h4>
+                                    <p class="text-lg font-bold hindi-font" id="cardName">-</p>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-gray-500 text-sm hindi-font">सदस्य ID:</h4>
+                                    <p class="text-red-600 font-mono" id="cardId">RLP-XXXXXX</p>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="text-gray-500 text-sm hindi-font">मोबाइल:</h4>
+                                    <p class="hindi-font" id="cardMobile">-</p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="text-gray-500 text-sm hindi-font">पता:</h4>
+                                    <p class="text-sm hindi-font" id="cardAddress">-</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 pt-4 border-t border-gray-200">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="text-xs text-gray-500 hindi-font">जारी की तिथि: <span id="issueDate"></span></p>
+                                </div>
+                                <div>
+                                    <img src="https://i.postimg.cc/FHX1gJTg/1000006651.jpg" alt="Signature" class="h-10">
+                                    <p class="text-xs text-gray-500 text-center hindi-font">पार्टी अध्यक्ष</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-100 py-3 px-6 text-center">
+                        <button id="downloadCard" class="btn btn-green hindi-font">
+                            <i class="fas fa-download mr-2"></i> कार्ड डाउनलोड करें
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Hanuman Beniwal Explorer Modal -->
+    <div id="hanuman-explorer-modal" class="hanuman-explorer-modal">
+        <div class="hanuman-content">
+            <div class="hanuman-header">
+                <h2 class="hindi-font text-2xl">हनुमान बेनीवाल</h2>
+                <button class="close-hanuman" onclick="closeHanumanExplorer()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="hanuman-tabs">
+                <div class="hanuman-tab hindi-font active" data-tab="overview">अवलोकन</div>
+                <div class="hanuman-tab hindi-font" data-tab="career">राजनीतिक जीवन</div>
+                <div class="hanuman-tab hindi-font" data-tab="achievements">उपलब्धियां</div>
+                <div class="hanuman-tab hindi-font" data-tab="gallery">गैलरी</div>
+            </div>
+            
+            <div class="hanuman-body">
+                <!-- Overview Section -->
+                <div class="hanuman-section active" id="overview-section">
+                    <div class="flex flex-col md:flex-row items-start gap-6">
+                        <div class="md:w-1/3">
+                            <img src="https://i.postimg.cc/vZLQPTqb/5-IYPGA5l-400x400.png" alt="हनुमान बेनीवाल" class="w-full rounded-lg shadow-lg">
+                            <div class="mt-4 bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-bold text-red-600 hindi-font">व्यक्तिगत जानकारी</h4>
+                                <ul class="mt-2 space-y-2">
+                                    <li class="flex justify-between">
+                                        <span class="text-gray-600 hindi-font">जन्म:</span>
+                                        <span class="font-medium hindi-font">2 मार्च 1972</span>
+                                    </li>
+                                    <li class="flex justify-between">
+                                        <span class="text-gray-600 hindi-font">जन्म स्थान:</span>
+                                        <span class="font-medium hindi-font">नागौर, राजस्थान</span>
+                                    </li>
+                                    <li class="flex justify-between">
+                                        <span class="text-gray-600 hindi-font">शिक्षा:</span>
+                                        <span class="font-medium hindi-font">विधि स्नातक</span>
+                                    </li>
+                                    <li class="flex justify-between">
+                                        <span class="text-gray-600 hindi-font">पार्टी:</span>
+                                        <span class="font-medium hindi-font">राष्ट्रीय लोकतांत्रिक पार्टी</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="md:w-2/3">
+                            <h3 class="text-xl font-bold mb-4 text-red-600 hindi-font">परिचय</h3>
+                            <p class="text-gray-700 mb-4 hindi-font">
+                                हनुमान बेनीवाल (जन्म 2 मार्च 1972) एक भारतीय राजनेता, किसान नेता और राष्ट्रीय लोकतांत्रिक पार्टी (रालोपा) के संस्थापक हैं, जो किसानों के अधिकारों की वकालत करने और भ्रष्टाचार का विरोध करने के लिए जाने जाते हैं।
+                            </p>
+                            <p class="text-gray-700 mb-4 hindi-font">
+                                वे 2019 से नागौर से लोकसभा के सांसद के रूप में कार्यरत हैं। वे राष्ट्रीय लोकतांत्रिक पार्टी के अध्यक्ष और राष्ट्रीय संयोजक हैं। वे 2008 से खींवसर निर्वाचन क्षेत्र से राजस्थान विधान सभा के लिए चार बार चुने गए हैं।
+                            </p>
+                            
+                            <h3 class="text-xl font-bold mb-4 text-red-600 hindi-font">प्रारंभिक जीवन</h3>
+                            <p class="text-gray-700 hindi-font">
+                                हनुमान बेनीवाल का जन्म 2 मार्च 1972 को राजस्थान में नागौर जिले के बरनगांव गांव में रामदेव और मोहिनी देवी के घर हुआ था। वह जाट समुदाय से हैं। उन्होंने 1993 में राजस्थान विश्वविद्यालय से कला स्नातक की उपाधि प्राप्त की और फिर 1998 में विधि स्नातक की उपाधि प्राप्त की।
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Political Career Section -->
+                <div class="hanuman-section" id="career-section">
+                    <h3 class="text-xl font-bold mb-4 text-red-600 hindi-font">राजनीतिक यात्रा</h3>
+                    
+                    <div class="hanuman-timeline">
+                        <div class="hanuman-timeline-item">
+                            <div class="hanuman-timeline-date hindi-font">2008</div>
+                            <p class="hindi-font">
+                                पहली बार भारतीय जनता पार्टी के सदस्य के रूप में राजस्थान विधानसभा के लिए चुने गए
+                            </p>
+                        </div>
+                        
+                        <div class="hanuman-timeline-item">
+                            <div class="hanuman-timeline-date hindi-font">2013</div>
+                            <p class="hindi-font">
+                                भाजपा नेताओं पर भ्रष्टाचार का आरोप लगाकर पार्टी से निलंबित हुए
+                            </p>
+                        </div>
+                        
+                        <div class="hanuman-timeline-item">
+                            <div class="hanuman-timeline-date hindi-font">2013</div>
+                            <p class="hindi-font">
+                                खींवसर निर्वाचन क्षेत्र से स्वतंत्र उम्मीदवार के रूप में दूसरी बार विधायक चुने गए
+                            </p>
+                        </div>
+                        
+                        <div class="hanuman-timeline-item">
+                            <div class="hanuman-timeline-date hindi-font">2018</div>
+                            <p class="hindi-font">
+                                29 अक्टूबर को राष्ट्रीय लोकतांत्रिक पार्टी (RLP) की स्थापना की
+                            </p>
+                        </div>
+                        
+                        <div class="hanuman-timeline-item">
+                            <div class="hanuman-timeline-date hindi-font">2018</div>
+                            <p class="hindi-font">
+                                RLP के सदस्य के रूप में तीसरी बार विधायक चुने गए
+                            </p>
+                        </div>
+                        
+                        <div class="hanuman-timeline-item">
+                            <div class="hanuman-timeline-date hindi-font">2019</div>
+                            <p class="hindi-font">
+                                भाजपा के साथ गठबंधन में नागौर सीट से पहली बार लोकसभा सांसद चुने गए
+                            </p>
+                        </div>
+                        
+                        <div class="hanuman-timeline-item">
+                            <div class="hanuman-timeline-date hindi-font">2020</div>
+                            <p class="hindi-font">
+                                कृषि कानूनों के विरोध में भाजपा से नाता तोड़ा और किसान आंदोलन का समर्थन किया
+                            </p>
+                        </div>
+                        
+                        <div class="hanuman-timeline-item">
+                            <div class="hanuman-timeline-date hindi-font">2023</div>
+                            <p class="hindi-font">
+                                चौथी बार राजस्थान विधानसभा के लिए चुने गए
+                            </p>
+                        </div>
+                        
+                        <div class="hanuman-timeline-item">
+                            <div class="hanuman-timeline-date hindi-font">2024</div>
+                            <p class="hindi-font">
+                                कांग्रेस के साथ गठबंधन में नागौर से दूसरी बार लोकसभा सांसद चुने गए
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold mt-8 mb-4 text-red-600 hindi-font">प्रमुख आंदोलन</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-100">
+                            <h4 class="font-bold text-red-700 hindi-font">किसान अधिकार</h4>
+                            <p class="text-gray-700 mt-2 hindi-font">
+                                हनुमान बेनीवाल ने किसानों के हक के लिए कई आंदोलनों का नेतृत्व किया है। 2020 के किसान आंदोलन के दौरान उन्होंने तीन संसदीय समितियों से इस्तीफा दे दिया और भाजपा से नाता तोड़ लिया।
+                            </p>
+                        </div>
+                        
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-100">
+                            <h4 class="font-bold text-red-700 hindi-font">भ्रष्टाचार विरोध</h4>
+                            <p class="text-gray-700 mt-2 hindi-font">
+                                उन्होंने राजस्थान में भ्रष्टाचार के खिलाफ जोरदार आवाज उठाई है और कई बड़े नेताओं के खिलाफ भ्रष्टाचार के आरोप लगाए हैं।
+                            </p>
+                        </div>
+                        
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-100">
+                            <h4 class="font-bold text-red-700 hindi-font">युवा रोजगार</h4>
+                            <p class="text-gray-700 mt-2 hindi-font">
+                                बेनीवाल युवाओं के लिए रोजगार के अवसर बढ़ाने के लिए प्रतिबद्ध हैं और इस दिशा में कई कार्यक्रम चला रहे हैं।
+                            </p>
+                        </div>
+                        
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-100">
+                            <h4 class="font-bold text-red-700 hindi-font">जाट आरक्षण</h4>
+                            <p class="text-gray-700 mt-2 hindi-font">
+                                जाट समुदाय के लिए आरक्षण की मांग को लेकर उन्होंने कई आंदोलनों का नेतृत्व किया है।
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Achievements Section -->
+                <div class="hanuman-section" id="achievements-section">
+                    <h3 class="text-xl font-bold mb-4 text-red-600 hindi-font">राजनीतिक उपलब्धियां</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                            <div class="text-red-600 text-4xl font-bold mb-3">4</div>
+                            <h4 class="font-bold text-lg mb-2 hindi-font">बार विधायक</h4>
+                            <p class="text-gray-600 hindi-font">
+                                2008, 2013, 2018 और 2023 में राजस्थान विधानसभा के लिए चुने गए
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                            <div class="text-red-600 text-4xl font-bold mb-3">2</div>
+                            <h4 class="font-bold text-lg mb-2 hindi-font">बार सांसद</h4>
+                            <p class="text-gray-600 hindi-font">
+                                2019 और 2024 में लोकसभा के लिए चुने गए
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                            <div class="text-red-600 text-4xl font-bold mb-3">2018</div>
+                            <h4 class="font-bold text-lg mb-2 hindi-font">पार्टी स्थापना</h4>
+                            <p class="text-gray-600 hindi-font">
+                                राष्ट्रीय लोकतांत्रिक पार्टी (RLP) की स्थापना की
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                            <div class="text-red-600 text-4xl font-bold mb-3">20+</div>
+                            <h4 class="font-bold text-lg mb-2 hindi-font">वर्षों का अनुभव</h4>
+                            <p class="text-gray-600 hindi-font">
+                                राजस्थान की राजनीति में सक्रिय नेतृत्व
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold mt-8 mb-4 text-red-600 hindi-font">प्रमुख योगदान</h3>
+                    <ul class="space-y-3 list-disc pl-5 hindi-font">
+                        <li>किसानों के हितों के लिए संसद में मजबूत आवाज</li>
+                        <li>राजस्थान में युवाओं के लिए रोजगार सृजन के प्रयास</li>
+                        <li>ग्रामीण विकास के लिए कई योजनाओं का क्रियान्वयन</li>
+                        <li>महिला सशक्तिकरण और शिक्षा को बढ़ावा</li>
+                        <li>स्वास्थ्य सुविधाओं के विस्तार के लिए कार्य</li>
+                    </ul>
+                </div>
+                
+                <!-- Gallery Section -->
+                <div class="hanuman-section" id="gallery-section">
+                    <h3 class="text-xl font-bold mb-4 text-red-600 hindi-font">हनुमान बेनीवाल के चुनिंदा चित्र</h3>
+                    
+                    <div class="hanuman-gallery">
+                        <img src="https://i.postimg.cc/P5BR8Qzq/Hanuman-Beniwal-news-2025-05-f5977541e4b03f70223be809b321043a.jpg" alt="Hanuman Beniwal">
+                        <img src="https://i.postimg.cc/xCdMfWJN/hanuman-beniwal-1538292262.jpg" alt="Hanuman Beniwal Speech">
+                        <img src="https://i.postimg.cc/8zVKbBnX/Hanuman-Beniwal-MLA.jpg" alt="Hanuman Beniwal MLA">
+                        <img src="https://i.postimg.cc/76B1Sx8N/images-12.jpg" alt="RLP Rally">
+                        <img src="https://i.postimg.cc/W3p6DdK3/images-13.jpg" alt="RLP Meeting">
+                        <img src="https://i.postimg.cc/fytdXmvw/images-18.jpg" alt="RLP Workers">
+                    </div>
+                    
+                    <h3 class="text-xl font-bold mt-8 mb-4 text-red-600 hindi-font">भाषण एवं साक्षात्कार</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/tHQVtB101qo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/6iy8DX9Jfa4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Other sections remain unchanged -->
+
+    <script>
+        // Function to toggle visibility of hidden content (unchanged)
+        
+        // RLP Explorer functionality (unchanged)
+        
+        // Mobile menu toggle (unchanged)
+        
+        // Form submission handlers
+        document.getElementById('joinForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const mobile = document.getElementById('mobile').value;
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+            const photoFile = document.getElementById('photo').files[0];
+            
+            if (!name || !mobile || !address || !photoFile) {
+                alert('कृपया सभी आवश्यक फ़ील्ड भरें');
+                return;
+            }
+            
+            // Generate member ID
+            const memberId = 'RLP-' + Math.floor(100000 + Math.random() * 900000);
+            
+            // Display member details
+            document.getElementById('cardName').textContent = name;
+            document.getElementById('cardId').textContent = memberId;
+            document.getElementById('cardMobile').textContent = mobile;
+            document.getElementById('cardAddress').textContent = address;
+            
+            // Display current date
+            const now = new Date();
+            document.getElementById('issueDate').textContent = now.toLocaleDateString('hi-IN');
+            
+            // Display photo
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('photoPreview').innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover rounded-xl">`;
+            };
+            reader.readAsDataURL(photoFile);
+            
+            // Show card
+            document.getElementById('memberCard').classList.remove('hidden');
+            document.getElementById('memberCard').scrollIntoView({behavior: 'smooth'});
+            
+            // Reset form
+            this.reset();
+        });
+        
+        // Download membership card
+        document.getElementById('downloadCard').addEventListener('click', function() {
+            const cardElement = document.getElementById('memberCard');
+            
+            // Show loading indicator
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> कार्ड बन रहा है...';
+            this.disabled = true;
+            
+            // Optimized html2canvas configuration
+            html2canvas(cardElement, {
+                scale: 2, // Higher quality
+                useCORS: true,
+                logging: false,
+                backgroundColor: null
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'rlp-membership-card.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                // Restore button
+                this.innerHTML = originalText;
+                this.disabled = false;
+            });
+        });
+        
+        // Hanuman Beniwal Explorer functions
+        function openHanumanExplorer() {
+            document.getElementById('hanuman-explorer-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeHanumanExplorer() {
+            document.getElementById('hanuman-explorer-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Switch tabs in Hanuman Explorer
+        document.querySelectorAll('.hanuman-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Hide all sections
+                document.querySelectorAll('.hanuman-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show selected section
+                const tabName = this.getAttribute('data-tab');
+                document.getElementById(`${tabName}-section`).classList.add('active');
+                
+                // Update active tab
+                document.querySelectorAll('.hanuman-tab').forEach(t => {
+                    t.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('hanuman-explorer-modal')) {
+                closeHanumanExplorer();
+            }
+        });
+    </script>
+</body>
+</html>
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="container mx-auto px-4">
