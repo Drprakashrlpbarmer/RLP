@@ -1432,6 +1432,410 @@
 </body>
 </html>
 
+<!-- Hero Section -->
+<section id="home" class="hero-section text-white">
+    <div class="container mx-auto px-4 text-center">
+        <div class="live-rally">
+            <span class="live-indicator"></span>
+            <strong class="hindi-font">लाइव: </strong>
+            <span class="hindi-font">डॉ. प्रकाश काकड़ जी बाड़मेर में युवा सम्मेलन को संबोधित कर रहे हैं</span>
+            <a href="#" class="text-white underline ml-2 hindi-font">लाइव देखें</a>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 hindi-font">जनता की आवाज, जनता की ताकत</h1>
+        <p class="text-xl mb-8 max-w-2xl mx-auto hindi-font">राष्ट्रीय लोकतांत्रिक पार्टी - राजस्थान के किसानों, मजदूरों और युवाओं के हक की लड़ाई</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="#join" class="btn btn-red hindi-font">हमसे जुड़ें</a>
+            <a href="#about" class="btn btn-white hindi-font">और जानें</a>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Poll Section -->
+<section class="py-10 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="poll-container">
+            <h3 class="text-2xl font-bold mb-6 text-center text-red-600 hindi-font">आज का जनमत सर्वेक्षण</h3>
+            <div class="poll-question hindi-font">आपके अनुसार राजस्थान में सबसे महत्वपूर्ण मुद्दा कौन सा है?</div>
+
+            <div class="poll-options">
+                <div class="poll-option">
+                    <input type="radio" name="poll" id="option1">
+                    <label for="option1" class="hindi-font">किसानों की समस्याएं और कृषि सुधार</label>
+                </div>
+                <div class="poll-option">
+                    <input type="radio" name="poll" id="option2">
+                    <label for="option2" class="hindi-font">युवाओं के लिए रोजगार के अवसर</label>
+                </div>
+                <div class="poll-option">
+                    <input type="radio" name="poll" id="option3">
+                    <label for="option3" class="hindi-font">महिला सुरक्षा और सशक्तिकरण</label>
+                </div>
+                <div class="poll-option">
+                    <input type="radio" name="poll" id="option4">
+                    <label for="option4" class="hindi-font">शिक्षा और स्वास्थ्य सुविधाओं का विकास</label>
+                </div>
+            </div>
+
+            <div class="text-center mt-6">
+                <button id="voteBtn" class="btn btn-green hindi-font">वोट दें</button>
+            </div>
+
+            <div class="poll-results">
+                <div class="result-item">
+                    <div class="hindi-font">किसानों की समस्याएं और कृषि सुधार</div>
+                    <div class="result-bar">
+                        <div class="result-fill" style="width: 45%">45%</div>
+                    </div>
+                </div>
+                <div class="result-item">
+                    <div class="hindi-font">युवाओं के लिए रोजगार के अवसर</div>
+                    <div class="result-bar">
+                        <div class="result-fill" style="width: 30%">30%</div>
+                    </div>
+                </div>
+                <div class="result-item">
+                    <div class="hindi-font">महिला सुरक्षा और सशक्तिकरण</div>
+                    <div class="result-bar">
+                        <div class="result-fill" style="width: 15%">15%</div>
+                    </div>
+                </div>
+                <div class="result-item">
+                    <div class="hindi-font">शिक्षा और स्वास्थ्य सुविधाओं का विकास</div>
+                    <div class="result-bar">
+                        <div class="result-fill" style="width: 10%">10%</div>
+                    </div>
+                </div>
+                <div class="text-center mt-6">
+                    <button id="sharePollBtn" class="btn btn-red hindi-font">
+                        <i class="fab fa-whatsapp mr-2"></i> व्हाट्सएप पर शेयर करें
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- New Features Section -->
+<section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 section-title hindi-font">हमारे नए फीचर्स</h2>
+
+        <!-- Suggestion Box -->
+        <div class="suggestion-box">
+            <h3 class="text-2xl font-bold mb-4 text-red-600 hindi-font">आपका सुझाव दें</h3>
+            <p class="mb-4 hindi-font">पार्टी को बेहतर बनाने के लिए आपके सुझाव हमारे लिए महत्वपूर्ण हैं। कृपया नीचे अपना सुझाव लिखें:</p>
+            <textarea placeholder="आपका सुझाव यहाँ लिखें..." class="hindi-font"></textarea>
+            <div class="text-center">
+                <button class="btn btn-green hindi-font">सुझाव सबमिट करें</button>
+            </div>
+        </div>
+
+        <!-- Donation Tracker -->
+        <div class="donation-tracker mt-10">
+            <h3 class="text-2xl font-bold mb-4 text-red-600 hindi-font">पारदर्शी दान प्रबंधन</h3>
+            <p class="mb-4 hindi-font">हमारे द्वारा प्राप्त दान और उनके उपयोग का विवरण:</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-green-600">₹12,84,752</div>
+                    <p class="hindi-font">कुल दान राशि</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-green-600">₹8,56,320</div>
+                    <p class="hindi-font">किसान सहायता पर खर्च</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-green-600">₹4,28,432</div>
+                    <p class="hindi-font">युवा शिक्षा पर खर्च</p>
+                </div>
+            </div>
+
+            <div class="donation-chart mt-6">
+                <canvas id="donationChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Petition Section -->
+        <div class="petition-section mt-12">
+            <h3 class="text-2xl font-bold mb-4 text-red-600 hindi-font">किसान ऋण माफी के लिए हस्ताक्षर अभियान</h3>
+            <p class="mb-4 hindi-font">राजस्थान के किसानों के ऋण माफी के लिए हमारे अभियान में भाग लें और हस्ताक्षर करें:</p>
+
+            <div class="signature-counter hindi-font">2,456 हस्ताक्षर</div>
+
+            <div class="text-center">
+                <button id="signPetitionBtn" class="btn btn-red hindi-font">अभियान में शामिल हों</button>
+            </div>
+
+            <div class="signature-list mt-6">
+                <div class="signature-item hindi-font">रमेश कुमार, जोधपुर</div>
+                <div class="signature-item hindi-font">सुरेश मेघवाल, बाड़मेर</div>
+                <div class="signature-item hindi-font">प्रिया शर्मा, जयपुर</div>
+                <div class="signature-item hindi-font">विकास जोशी, सीकर</div>
+                <div class="signature-item hindi-font">मोहन लाल, अजमेर</div>
+                <div class="signature-item hindi-font">गीता देवी, उदयपुर</div>
+                <div class="signature-item hindi-font">अनिल कुमार, कोटा</div>
+            </div>
+        </div>
+
+        <!-- Discussion Forum -->
+        <div class="forum-section mt-12">
+            <h3 class="text-2xl font-bold mb-4 text-red-600 hindi-font">जन चर्चा मंच</h3>
+            <p class="mb-4 hindi-font">पार्टी की नीतियों और जनहित के मुद्दों पर चर्चा में भाग लें:</p>
+
+            <div class="forum-topic">
+                <div class="topic-title hindi-font">किसानों की समस्याओं का समाधान कैसे हो?</div>
+                <div class="topic-meta hindi-font">45 टिप्पणियाँ • 128 व्यूज</div>
+            </div>
+
+            <div class="forum-topic">
+                <div class="topic-title hindi-font">युवाओं के लिए रोजगार के नए अवसर</div>
+                <div class="topic-meta hindi-font">32 टिप्पणियाँ • 98 व्यूज</div>
+            </div>
+
+            <div class="forum-topic">
+                <div class="topic-title hindi-font">महिला सुरक्षा और सशक्तिकरण</div>
+                <div class="topic-meta hindi-font">28 टिप्पणियाँ • 76 व्यूज</div>
+            </div>
+
+            <div class="text-center mt-6">
+                <button class="btn btn-green hindi-font">सभी विषय देखें</button>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Virtual Rally Section -->
+<div class="vr-section">
+    <h3 class="text-2xl font-bold mb-4 hindi-font">वर्चुअल रैली में शामिल हों</h3>
+    <p class="mb-4 hindi-font">अगली पार्टी रैली में वर्चुअल रूप से शामिल हों और हनुमान बेनीवाल जी का सीधा संबोधन सुनें</p>
+    <div class="vr-button hindi-font">वर्चुअल रैली में शामिल हों</div>
+    <p class="mt-4 text-sm hindi-font">VR हेडसेट की सुविधा उपलब्ध नहीं होने पर भी भाग ले सकते हैं</p>
+</div>
+
+<!-- Badges Section -->
+<div class="text-center mt-12">
+    <h3 class="text-2xl font-bold mb-4 text-red-600 hindi-font">अपने योगदान के लिए बैज कमाएँ</h3>
+    <p class="mb-6 hindi-font">पार्टी के कार्यक्रमों में भाग लेकर और योगदान देकर विशेष बैज अर्जित करें</p>
+
+    <div class="badge-container">
+        <div class="badge">
+            <div class="badge-icon">
+                <i class="fas fa-hands-helping"></i>
+            </div>
+            <div class="badge-label hindi-font">स्वयंसेवक</div>
+        </div>
+        <div class="badge">
+            <div class="badge-icon">
+                <i class="fas fa-microphone"></i>
+            </div>
+            <div class="badge-label hindi-font">वक्ता</div>
+        </div>
+        <div class="badge">
+            <div class="badge-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="badge-label hindi-font">समुदाय निर्माता</div>
+        </div>
+        <div class="badge">
+            <div class="badge-icon">
+                <i class="fas fa-donate"></i>
+            </div>
+            <div class="badge-label hindi-font">दाता</div>
+        </div>
+    </div>
+</div>
+
+<!-- Fact Check Section -->
+<div class="fact-check-section mt-12">
+    <h3 class="text-2xl font-bold mb-4 text-red-600 hindi-font">फेक न्यूज चेकर</h3>
+    <p class="mb-4 hindi-font">पार्टी से जुड़ी अफवाहों की सच्चाई जानें:</p>
+
+    <div class="fact-item">
+        <div class="fact-title hindi-font">क्या RLP जाट आरक्षण का विरोध करती है?
+            <span class="fact-status status-false hindi-font">असत्य</span>
+        </div>
+        <p class="hindi-font">सत्य: RLP जाट समुदाय के आरक्षण का पूरा समर्थन करती है और इसके लिए संघर्षरत है।</p>
+    </div>
+
+    <div class="fact-item">
+        <div class="fact-title hindi-font">क्या हनुमान बेनीवाल ने पार्टी छोड़ने की धमकी दी थी?
+            <span class="fact-status status-false hindi-font">असत्य</span>
+        </div>
+        <p class="hindi-font">सत्य: यह अफवाह बिल्कुल निराधार है, हनुमान जी पार्टी के संस्थापक और मुख्य नेता हैं।</p>
+    </div>
+
+    <div class="fact-item">
+        <div class="fact-title hindi-font">क्या RLP ने किसान आंदोलन का समर्थन किया?
+            <span class="fact-status status-true hindi-font">सत्य</span>
+        </div>
+        <p class="hindi-font">हाँ, RLP ने किसान आंदोलन का पूरा समर्थन किया और नेता सक्रिय रूप से भाग लिए।</p>
+    </div>
+
+    <div class="text-center mt-6">
+        <button class="btn btn-green hindi-font">और फेक न्यूज चेक करें</button>
+    </div>
+</div>
+<!-- Join Form Section -->
+<section id="join" class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800 hindi-font">हमसे जुड़ें</h2>
+        <!-- यहां पर आप अपने सदस्यता फॉर्म का कोड डाल सकते हैं -->
+        <!-- अगर आपने पहले से PHP या कार्ड वाली system बनाई है, वही code यहां रखें -->
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800 hindi-font">संपर्क करें</h2>
+        <!-- यहां आप अपना संपर्क फॉर्म डाल सकते हैं -->
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4 text-center">
+        <p class="hindi-font">&copy; 2025 राष्ट्रीय लोकतांत्रिक पार्टी (RLP) | सभी अधिकार सुरक्षित</p>
+    </div>
+</footer>
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<script>
+    // पोल वोटिंग
+    const voteBtn = document.getElementById('voteBtn');
+    const pollOptions = document.querySelectorAll('.poll-option');
+    const pollResults = document.querySelector('.poll-results');
+
+    pollOptions.forEach(option => {
+        option.addEventListener('click', function () {
+            pollOptions.forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+            const radio = this.querySelector('input[type="radio"]');
+            radio.checked = true;
+        });
+    });
+
+    voteBtn.addEventListener('click', function () {
+        const selectedOption = document.querySelector('.poll-option.selected');
+        if (!selectedOption) {
+            alert('कृपया विकल्प चुनें');
+            return;
+        }
+        pollResults.style.display = 'block';
+        pollResults.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // पोल शेयर बटन
+    const sharePollBtn = document.getElementById('sharePollBtn');
+    sharePollBtn.addEventListener('click', function () {
+        alert('पोल व्हाट्सएप पर शेयर की गई!');
+    });
+
+    // हस्ताक्षर अभियान
+    const signPetitionBtn = document.getElementById('signPetitionBtn');
+    const signatureList = document.querySelector('.signature-list');
+    const signatureCounter = document.querySelector('.signature-counter');
+
+    signPetitionBtn.addEventListener('click', function () {
+        const name = prompt('हस्ताक्षर के लिए अपना नाम दर्ज करें:');
+        if (name) {
+            let count = parseInt(signatureCounter.textContent);
+            count++;
+            signatureCounter.textContent = count + ' हस्ताक्षर';
+            const newSignature = document.createElement('div');
+            newSignature.className = 'signature-item hindi-font';
+            newSignature.textContent = name + ', ' + getRandomCity();
+            signatureList.prepend(newSignature);
+            alert('धन्यवाद! आपका हस्ताक्षर सफलतापूर्वक जोड़ा गया।');
+        }
+    });
+
+    function getRandomCity() {
+        const cities = ['जयपुर', 'जोधपुर', 'बाड़मेर', 'उदयपुर', 'कोटा', 'अजमेर', 'सीकर', 'जैसलमेर'];
+        return cities[Math.floor(Math.random() * cities.length)];
+    }
+
+    // दान चार्ट
+    const donationCtx = document.getElementById('donationChart').getContext('2d');
+    const donationChart = new Chart(donationCtx, {
+        type: 'bar',
+        data: {
+            labels: ['जनवरी', 'फरवरी', 'मार्च', 'अप्रैल', 'मई', 'जून'],
+            datasets: [{
+                label: 'दान राशि (₹)',
+                data: [185000, 210000, 175000, 230000, 255000, 290752],
+                backgroundColor: 'rgba(44, 151, 75, 0.7)',
+                borderColor: 'rgb(44, 151, 75)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function (value) {
+                            return '₹' + value.toLocaleString('hi-IN');
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            return 'दान राशि: ₹' + context.parsed.y.toLocaleString('hi-IN');
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // चैटबॉट
+    const chatbotButton = document.getElementById('chatbotButton');
+    const chatbotWindow = document.getElementById('chatbotWindow');
+    const closeChatbot = document.getElementById('closeChatbot');
+    const sendMessage = document.getElementById('sendMessage');
+    const userInput = document.getElementById('userInput');
+    const chatMessages = document.getElementById('chatMessages');
+
+    chatbotButton.addEventListener('click', () => chatbotWindow.style.display = 'flex');
+    closeChatbot.addEventListener('click', () => chatbotWindow.style.display = 'none');
+
+    function addMessage(text, isUser = false) {
+        const msg = document.createElement('div');
+        msg.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+        msg.textContent = text;
+        chatMessages.appendChild(msg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function generateBotResponse(msg) {
+        const m = msg.toLowerCase();
+        if (m.includes('नमस्ते') || m.includes('hello')) return 'नमस्ते! आरएलपी सहायक में आपका स्वागत है।';
+        else if (m.includes('सदस्यता') || m.includes('जुड़ना')) return 'सदस्यता के लिए "हमसे जुड़ें" सेक्शन देखें।';
+        else return 'कृपया स्पष्ट प्रश्न पूछें।';
+    }
+
+    sendMessage.addEventListener('click', () => {
+        if (!userInput.value.trim()) return;
+        addMessage(userInput.value, true);
+        const res = generateBotResponse(userInput.value);
+        setTimeout(() => addMessage(res), 1000);
+        userInput.value = '';
+    });
+
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage.click();
+    });
+
+    // चैटबॉट वेलकम मैसेज
+    setTimeout(() => {
+        addMessage('नमस्ते! मैं आरएलपी सहायक हूँ। आप पार्टी, नीतियों, कार्यक्रमों या सदस्यता के बारे में क्या जानना चाहते हैं?');
+    }, 1000);
+</script>
                                 
     <!-- Contact Section -->
     <section id="contact" class="py-16 bg-white">
