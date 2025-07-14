@@ -1898,6 +1898,1192 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Existing styles remain the same */
+        /* ... (All the existing CSS styles) ... */
+        
+        /* New Features Styles */
+        .poll-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 30px 0;
+        }
+        
+        .poll-question {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c974b;
+            text-align: center;
+        }
+        
+        .poll-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .poll-option:hover {
+            background-color: #f8fafc;
+            border-color: #cbd5e0;
+        }
+        
+        .poll-option.selected {
+            background-color: #ebf8ff;
+            border-color: #90cdf4;
+        }
+        
+        .poll-option input {
+            margin-right: 12px;
+        }
+        
+        .poll-option label {
+            cursor: pointer;
+            flex-grow: 1;
+        }
+        
+        .poll-results {
+            display: none;
+            margin-top: 20px;
+        }
+        
+        .result-item {
+            margin-bottom: 15px;
+        }
+        
+        .result-bar {
+            height: 25px;
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .result-fill {
+            height: 100%;
+            background: linear-gradient(to right, #2c974b, #1e5a2c);
+            border-radius: 4px;
+            text-align: right;
+            padding-right: 10px;
+            color: white;
+            font-weight: bold;
+            line-height: 25px;
+            font-size: 14px;
+        }
+        
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .chatbot-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(to right, #2c974b, #1e5a2c);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .chatbot-window {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            height: 450px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .chatbot-header {
+            background: linear-gradient(to right, #2c974b, #1e5a2c);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chatbot-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f8fafc;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            max-width: 80%;
+        }
+        
+        .bot-message {
+            align-self: flex-start;
+            background: white;
+            border-radius: 15px 15px 15px 0;
+            padding: 10px 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .user-message {
+            align-self: flex-end;
+            background: #e6f7ff;
+            border-radius: 15px 15px 0 15px;
+            padding: 10px 15px;
+            margin-left: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .chatbot-input input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 25px;
+            outline: none;
+        }
+        
+        .chatbot-input button {
+            background: #2c974b;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        
+        .suggestion-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 30px 0;
+        }
+        
+        .suggestion-box textarea {
+            width: 100%;
+            height: 120px;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            resize: none;
+        }
+        
+        .donation-tracker {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 30px 0;
+        }
+        
+        .donation-chart {
+            height: 300px;
+            margin-top: 20px;
+        }
+        
+        .petition-section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 30px 0;
+        }
+        
+        .signature-counter {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e53e3e;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .signature-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        .signature-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .forum-section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 30px 0;
+        }
+        
+        .forum-topic {
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        
+        .forum-topic:hover {
+            background-color: #f8fafc;
+        }
+        
+        .topic-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .topic-meta {
+            color: #718096;
+            font-size: 14px;
+        }
+        
+        .vr-section {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                        url('https://i.postimg.cc/L8t6mGjD/vr-rally.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            padding: 50px 30px;
+            text-align: center;
+            color: white;
+            margin: 30px 0;
+        }
+        
+        .vr-button {
+            display: inline-block;
+            background: #2c974b;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .vr-button:hover {
+            background: #1e5a2c;
+            transform: translateY(-3px);
+        }
+        
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        .badge {
+            width: 100px;
+            text-align: center;
+        }
+        
+        .badge-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(to right, #2c974b, #1e5a2c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: white;
+            font-size: 30px;
+        }
+        
+        .badge-label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .fact-check-section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 30px 0;
+        }
+        
+        .fact-item {
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .fact-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .fact-status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .status-true {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+        
+        .status-false {
+            background: #fed7d7;
+            color: #822727;
+        }
+        
+        .login-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 30px auto;
+            max-width: 500px;
+        }
+        
+        .two-factor {
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .member-dashboard {
+            display: none;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .dashboard-card i {
+            font-size: 2.5rem;
+            color: #2c974b;
+            margin-bottom: 15px;
+        }
+        
+        .dashboard-card h3 {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .chatbot-window {
+                width: 300px;
+                height: 400px;
+            }
+            
+            .vr-section {
+                padding: 30px 15px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header Section -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://i.postimg.cc/3wkRsgyr/1000006651.jpg" alt="RLP Logo" class="h-12 w-12 rounded-full object-cover">
+                <div class="ml-3">
+                    <h1 class="text-xl font-bold text-red-600 hindi-font">राष्ट्रीय लोकतांत्रिक पार्टी (RLP)</h1>
+                    <p class="text-xs text-gray-600 hindi-font">डॉ. प्रकाश काकड़, बाड़मेर</p>
+                </div>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="search-container hidden md:block">
+                <input type="text" placeholder="खोजें..." class="hindi-font">
+                <i class="fas fa-search absolute right-3 top-2 text-gray-400"></i>
+            </div>
+            
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="nav-link active-nav text-red-600 font-medium hindi-font">होम</a>
+                <a href="#about" class="nav-link text-gray-700 hover:text-red-600 font-medium hindi-font">पार्टी के बारे में</a>
+                <a href="#leaders" class="nav-link text-gray-700 hover:text-red-600 font-medium hindi-font">नेता</a>
+                <a href="#gallery" class="nav-link text-gray-700 hover:text-red-600 font-medium hindi-font">गैलरी</a>
+                <a href="#news" class="nav-link text-gray-700 hover:text-red-600 font-medium hindi-font">समाचार</a>
+                <a href="#products" class="nav-link text-gray-700 hover:text-red-600 font-medium hindi-font">उत्पाद</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-red-600 font-medium hindi-font">संपर्क</a>
+                <a href="#join" class="nav-link text-gray-700 hover:text-red-600 font-medium hindi-font">हमसे जुड़ें</a>
+                <button id="explorerBtn" class="btn btn-green hindi-font">एक्सप्लोरर आरएलपी</button>
+                <button id="loginBtn" class="btn btn-red hindi-font">लॉग इन</button>
+            </div>
+            
+            <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2 px-4 shadow-lg">
+            <div class="search-container mb-3">
+                <input type="text" placeholder="खोजें..." class="hindi-font w-full">
+            </div>
+            <a href="#home" class="block py-2 text-red-600 font-medium hindi-font">होम</a>
+            <a href="#about" class="block py-2 text-gray-700 hover:text-red-600 font-medium hindi-font">पार्टी के बारे में</a>
+            <a href="#leaders" class="block py-2 text-gray-700 hover:text-red-600 font-medium hindi-font">नेता</a>
+            <a href="#gallery" class="block py-2 text-gray-700 hover:text-red-600 font-medium hindi-font">गैलरी</a>
+            <a href="#products" class="block py-2 text-gray-700 hover:text-red-600 font-medium hindi-font">उत्पाद</a>
+            <a href="#news" class="block py-2 text-gray-700 hover:text-red-600 font-medium hindi-font">समाचार</a>
+            <a href="#contact" class="block py-2 text-gray-700 hover:text-red-600 font-medium hindi-font">संपर्क</a>
+            <a href="#join" class="block py-2 btn btn-red rounded-md text-center hindi-font">हमसे जुड़ें</a>
+            <button id="mobileExplorerBtn" class="w-full btn btn-green mt-2 hindi-font">एक्सप्लोरर आरएलपी</button>
+            <button id="mobileLoginBtn" class="w-full btn btn-red mt-2 hindi-font">लॉग इन</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="live-rally">
+                <span class="live-indicator"></span>
+                <strong class="hindi-font">लाइव: </strong>
+                <span class="hindi-font">डॉ. प्रकाश काकड़ जी बाड़मेर में युवा सम्मेलन को संबोधित कर रहे हैं</span>
+                <a href="#" class="text-white underline ml-2 hindi-font">लाइव देखें</a>
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 hindi-font">जनता की आवाज, जनता की ताकत</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto hindi-font">राष्ट्रीय लोकतांत्रिक पार्टी - राजस्थान के किसानों, मजदूरों और युवाओं के हक की लड़ाई</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#join" class="btn btn-red hindi-font">हमसे जुड़ें</a>
+                <a href="#about" class="btn btn-white hindi-font">और जानें</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Ticker -->
+    <div class="bg-red-600 text-white py-2 overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center">
+                <span class="font-bold mr-4 hindi-font">ताजा समाचार:</span>
+                <div class="flex-1 overflow-hidden">
+                    <div class="news-ticker">
+                        <span class="mr-8 hindi-font">राकेश बिश्नोई हत्याकांड में न्याय की दिशा में बड़ा कदम</span>
+                        <span class="mr-8 hindi-font">निर्मल चौधरी की गिरफ्तारी</span>
+                        <span class="mr-8 hindi-font">RLP ने स्पष्ट किया कि निर्मल चौधरी का पार्टी से कोई संबंध नहीं</span>
+                        <span class="mr-8 hindi-font">राकेश बिश्नोई के परिजनों और प्रशासन में बनी सहमति, धरना समाप्त</span>
+                        <span class="mr-8 hindi-font">हनुमान बेनीवाल ने जाट आरक्षण पर बैठक की</span>
+                        <span class="mr-8 hindi-font">डॉ. प्रकाश काकड़ ने बाड़मेर में युवा सम्मेलन को संबोधित किया</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Poll Section -->
+    <section class="py-10 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="poll-container">
+                <h3 class="text-2xl font-bold mb-6 text-center text-red-600 hindi-font">आज का जनमत सर्वेक्षण</h3>
+                <div class="poll-question hindi-font">आपके अनुसार राजस्थान में सबसे महत्वपूर्ण मुद्दा कौन सा है?</div>
+                
+                <div class="poll-options">
+                    <div class="poll-option">
+                        <input type="radio" name="poll" id="option1">
+                        <label for="option1" class="hindi-font">किसानों की समस्याएं और कृषि सुधार</label>
+                    </div>
+                    <div class="poll-option">
+                        <input type="radio" name="poll" id="option2">
+                        <label for="option2" class="hindi-font">युवाओं के लिए रोजगार के अवसर</label>
+                    </div>
+                    <div class="poll-option">
+                        <input type="radio" name="poll" id="option3">
+                        <label for="option3" class="hindi-font">महिला सुरक्षा और सशक्तिकरण</label>
+                    </div>
+                    <div class="poll-option">
+                        <input type="radio" name="poll" id="option4">
+                        <label for="option4" class="hindi-font">शिक्षा और स्वास्थ्य सुविधाओं का विकास</label>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-6">
+                    <button id="voteBtn" class="btn btn-green hindi-font">वोट दें</button>
+                </div>
+                
+                <div class="poll-results">
+                    <div class="result-item">
+                        <div class="hindi-font">किसानों की समस्याएं और कृषि सुधार</div>
+                        <div class="result-bar">
+                            <div class="result-fill" style="width: 45%">45%</div>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <div class="hindi-font">युवाओं के लिए रोजगार के अवसर</div>
+                        <div class="result-bar">
+                            <div class="result-fill" style="width: 30%">30%</div>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <div class="hindi-font">महिला सुरक्षा और सशक्तिकरण</div>
+                        <div class="result-bar">
+                            <div class="result-fill" style="width: 15%">15%</div>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <div class="hindi-font">शिक्षा और स्वास्थ्य सुविधाओं का विकास</div>
+                        <div class="result-bar">
+                            <div class="result-fill" style="width: 10%">10%</div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-6">
+                        <button id="sharePollBtn" class="btn btn-red hindi-font">
+                            <i class="fab fa-whatsapp mr-2"></i> व्हाट्सएप पर शेयर करें
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <!-- ... existing about section ... -->
+    </section>
+
+    <!-- Video Section -->
+    <section class="py-16 bg-gray-100">
+        <!-- ... existing video section ... -->
+    </section>
+
+    <!-- Leaders Section -->
+    <section id="leaders" class="py-16 bg-white">
+        <!-- ... existing leaders section ... -->
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 bg-gray-100">
+        <!-- ... existing gallery section ... -->
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <!-- ... existing products section ... -->
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="py-16 bg-white">
+        <!-- ... existing news section ... -->
+    </section>
+
+    <!-- New Features Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 section-title hindi-font">हमारे नए फीचर्स</h2>
+            
+            <!-- Suggestion Box -->
+            <div class="suggestion-box">
+                <h3 class="text-2xl font-bold mb-4 text-red-600 hindi-font">आपका सुझाव दें</h3>
+                <p class="mb-4 hindi-font">पार्टी को बेहतर बनाने के लिए आपके सुझाव हमारे लिए महत्वपूर्ण हैं। कृपया नीचे अपना सुझाव लिखें:</p>
+                <textarea placeholder="आपका सुझाव यहाँ लिखें..." class="hindi-font"></textarea>
+                <div class="text-center">
+                    <button class="btn btn-green hindi-font">सुझाव सबमिट करें</button>
+                </div>
+            </div>
+            
+            <!-- Donation Tracker -->
+            <div class="donation-tracker">
+                <h3 class="text-2xl font-bold mb-4 text-red-600 hindi-font">पारदर्शी दान प्रबंधन</h3>
+                <p class="mb-4 hindi-font">हमारे द्वारा प्राप्त दान और उनके उपयोग का विवरण:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-green-600">₹12,84,752</div>
+                        <p class="hindi-font">कुल दान राशि</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-green-600">₹8,56,320</div>
+                        <p class="hindi-font">किसान सहायता पर खर्च</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-green-600">₹4,28,432</div>
+                        <p class="hindi-font">युवा शिक्षा पर खर्च</p>
+                    </div>
+                </div>
+                
+                <div class="donation-chart">
+                    <canvas id="donationChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Petition Section -->
+            <div class="petition-section">
+                <h3 class="text-2xl font-bold mb-4 text-red-600 hindi-font">किसान ऋण माफी के लिए हस्ताक्षर अभियान</h3>
+                <p class="mb-4 hindi-font">राजस्थान के किसानों के ऋण माफी के लिए हमारे अभियान में भाग लें और हस्ताक्षर करें:</p>
+                
+                <div class="signature-counter hindi-font">2,456 हस्ताक्षर</div>
+                
+                <div class="text-center">
+                    <button id="signPetitionBtn" class="btn btn-red hindi-font">अभियान में शामिल हों</button>
+                </div>
+                
+                <div class="signature-list">
+                    <div class="signature-item hindi-font">रमेश कुमार, जोधपुर</div>
+                    <div class="signature-item hindi-font">सुरेश मेघवाल, बाड़मेर</div>
+                    <div class="signature-item hindi-font">प्रिया शर्मा, जयपुर</div>
+                    <div class="signature-item hindi-font">विकास जोशी, सीकर</div>
+                    <div class="signature-item hindi-font">मोहन लाल, अजमेर</div>
+                    <div class="signature-item hindi-font">गीता देवी, उदयपुर</div>
+                    <div class="signature-item hindi-font">अनिल कुमार, कोटा</div>
+                </div>
+            </div>
+            
+            <!-- Discussion Forum -->
+            <div class="forum-section">
+                <h3 class="text-2xl font-bold mb-4 text-red-600 hindi-font">जन चर्चा मंच</h3>
+                <p class="mb-4 hindi-font">पार्टी की नीतियों और जनहित के मुद्दों पर चर्चा में भाग लें:</p>
+                
+                <div class="forum-topic">
+                    <div class="topic-title hindi-font">किसानों की समस्याओं का समाधान कैसे हो?</div>
+                    <div class="topic-meta hindi-font">45 टिप्पणियाँ • 128 व्यूज</div>
+                </div>
+                
+                <div class="forum-topic">
+                    <div class="topic-title hindi-font">युवाओं के लिए रोजगार के नए अवसर</div>
+                    <div class="topic-meta hindi-font">32 टिप्पणियाँ • 98 व्यूज</div>
+                </div>
+                
+                <div class="forum-topic">
+                    <div class="topic-title hindi-font">महिला सुरक्षा और सशक्तिकरण</div>
+                    <div class="topic-meta hindi-font">28 टिप्पणियाँ • 76 व्यूज</div>
+                </div>
+                
+                <div class="text-center mt-6">
+                    <button class="btn btn-green hindi-font">सभी विषय देखें</button>
+                </div>
+            </div>
+            
+            <!-- Virtual Rally Section -->
+            <div class="vr-section">
+                <h3 class="text-2xl font-bold mb-4 hindi-font">वर्चुअल रैली में शामिल हों</h3>
+                <p class="mb-4 hindi-font">अगली पार्टी रैली में वर्चुअल रूप से शामिल हों और हनुमान बेनीवाल जी का सीधा संबोधन सुनें</p>
+                <div class="vr-button hindi-font">वर्चुअल रैली में शामिल हों</div>
+                <p class="mt-4 text-sm hindi-font">VR हेडसेट की सुविधा उपलब्ध नहीं होने पर भी भाग ले सकते हैं</p>
+            </div>
+            
+            <!-- Badges Section -->
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4 text-red-600 hindi-font">अपने योगदान के लिए बैज कमाएँ</h3>
+                <p class="mb-6 hindi-font">पार्टी के कार्यक्रमों में भाग लेकर और योगदान देकर विशेष बैज अर्जित करें</p>
+                
+                <div class="badge-container">
+                    <div class="badge">
+                        <div class="badge-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div class="badge-label hindi-font">स्वयंसेवक</div>
+                    </div>
+                    <div class="badge">
+                        <div class="badge-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <div class="badge-label hindi-font">वक्ता</div>
+                    </div>
+                    <div class="badge">
+                        <div class="badge-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="badge-label hindi-font">समुदाय निर्माता</div>
+                    </div>
+                    <div class="badge">
+                        <div class="badge-icon">
+                            <i class="fas fa-donate"></i>
+                        </div>
+                        <div class="badge-label hindi-font">दाता</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fact Check Section -->
+            <div class="fact-check-section">
+                <h3 class="text-2xl font-bold mb-4 text-red-600 hindi-font">फेक न्यूज चेकर</h3>
+                <p class="mb-4 hindi-font">पार्टी से जुड़ी अफवाहों की सच्चाई जानें:</p>
+                
+                <div class="fact-item">
+                    <div class="fact-title hindi-font">क्या RLP जाट आरक्षण का विरोध करती है?
+                        <span class="fact-status status-false hindi-font">असत्य</span>
+                    </div>
+                    <p class="hindi-font">सत्य: RLP जाट समुदाय के आरक्षण का पूरा समर्थन करती है और इसके लिए संघर्षरत है।</p>
+                </div>
+                
+                <div class="fact-item">
+                    <div class="fact-title hindi-font">क्या हनुमान बेनीवाल ने पार्टी छोड़ने की धमकी दी थी?
+                        <span class="fact-status status-false hindi-font">असत्य</span>
+                    </div>
+                    <p class="hindi-font">सत्य: यह अफवाह बिल्कुल निराधार है, हनुमान जी पार्टी के संस्थापक और मुख्य नेता हैं।</p>
+                </div>
+                
+                <div class="fact-item">
+                    <div class="fact-title hindi-font">क्या RLP ने किसान आंदोलन का समर्थन किया?
+                        <span class="fact-status status-true hindi-font">सत्य</span>
+                    </div>
+                    <p class="hindi-font">हाँ, RLP ने किसान आंदोलन का पूरा समर्थन किया और नेता सक्रिय रूप से भाग लिए।</p>
+                </div>
+                
+                <div class="text-center mt-6">
+                    <button class="btn btn-green hindi-font">और फेक न्यूज चेक करें</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Form Section -->
+    <section id="join" class="py-16 bg-gray-100">
+        <!-- ... existing join section ... -->
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <!-- ... existing contact section ... -->
+    </section>
+
+    <!-- Real-time Counter -->
+    <section class="py-16 bg-gray-100">
+        <!-- ... existing counter section ... -->
+    </section>
+
+    <!-- Admin Panel -->
+    <section class="py-16 bg-white">
+        <!-- ... existing admin panel ... -->
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <!-- ... existing footer ... -->
+    </footer>
+
+    <!-- Explorer RLP Modal -->
+    <div id="explorer-modal" class="explorer-modal">
+        <!-- ... existing explorer modal ... -->
+    </div>
+
+    <!-- Leader Details Modals -->
+    <div id="hanuman-modal" class="leader-modal">
+        <!-- ... existing leader modal ... -->
+    </div>
+    
+    <div id="narayan-modal" class="leader-modal">
+        <!-- ... existing leader modal ... -->
+    </div>
+
+    <!-- AI Chatbot Widget -->
+    <div class="chatbot-container">
+        <div class="chatbot-button" id="chatbotButton">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <span class="hindi-font">आरएलपी सहायक</span>
+                <span id="closeChatbot"><i class="fas fa-times"></i></span>
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="message bot-message hindi-font">
+                    नमस्ते! मैं आरएलपी सहायक हूँ। आप पार्टी, नीतियों, कार्यक्रमों या सदस्यता के बारे में क्या जानना चाहते हैं?
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="userInput" placeholder="आपका संदेश..." class="hindi-font">
+                <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Member Login Modal -->
+    <div id="loginModal" class="explorer-modal">
+        <div class="explorer-content">
+            <div class="explorer-header">
+                <h2 class="hindi-font">सदस्य लॉगिन</h2>
+                <button class="close-explorer" id="closeLogin">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="login-section">
+                <div id="loginForm">
+                    <div class="form-group mb-4">
+                        <label for="loginMobile" class="block mb-2 hindi-font">मोबाइल नंबर</label>
+                        <input type="tel" id="loginMobile" class="w-full p-3 border rounded-md hindi-font" placeholder="आपका रजिस्टर्ड मोबाइल">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="loginPassword" class="block mb-2 hindi-font">पासवर्ड</label>
+                        <input type="password" id="loginPassword" class="w-full p-3 border rounded-md" placeholder="आपका पासवर्ड">
+                    </div>
+                    <button id="loginSubmit" class="btn btn-red w-full hindi-font">लॉग इन</button>
+                    
+                    <div class="text-center mt-4">
+                        <a href="#" class="text-blue-600 hindi-font">पासवर्ड भूल गए?</a>
+                    </div>
+                </div>
+                
+                <div class="two-factor" id="twoFactor">
+                    <div class="form-group mb-4">
+                        <label class="block mb-2 hindi-font">आपके मोबाइल पर भेजा गया OTP</label>
+                        <div class="flex space-x-2">
+                            <input type="text" maxlength="1" class="w-12 h-12 text-center text-xl border rounded-md">
+                            <input type="text" maxlength="1" class="w-12 h-12 text-center text-xl border rounded-md">
+                            <input type="text" maxlength="1" class="w-12 h-12 text-center text-xl border rounded-md">
+                            <input type="text" maxlength="1" class="w-12 h-12 text-center text-xl border rounded-md">
+                            <input type="text" maxlength="1" class="w-12 h-12 text-center text-xl border rounded-md">
+                            <input type="text" maxlength="1" class="w-12 h-12 text-center text-xl border rounded-md">
+                        </div>
+                    </div>
+                    <button id="verifyOtp" class="btn btn-green w-full hindi-font">OTP सत्यापित करें</button>
+                </div>
+                
+                <div class="member-dashboard" id="memberDashboard">
+                    <h3 class="text-xl font-bold mb-6 text-center hindi-font">स्वागत है, रमेश कुमार!</h3>
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <i class="fas fa-user"></i>
+                            <h3 class="hindi-font">मेरा प्रोफाइल</h3>
+                            <p class="hindi-font">अपनी जानकारी अपडेट करें</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <i class="fas fa-calendar"></i>
+                            <h3 class="hindi-font">आगामी कार्यक्रम</h3>
+                            <p class="hindi-font">5 कार्यक्रम निर्धारित</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <i class="fas fa-hands-helping"></i>
+                            <h3 class="hindi-font">स्वयंसेवक गतिविधियाँ</h3>
+                            <p class="hindi-font">12 कार्य पूर्ण किए</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <i class="fas fa-certificate"></i>
+                            <h3 class="hindi-font">मेरे बैज</h3>
+                            <p class="hindi-font">3 बैज अर्जित किए</p>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-8">
+                        <button id="logoutBtn" class="btn btn-red hindi-font">लॉग आउट</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script>
+        // Existing JavaScript remains the same
+        // ... (All the existing JavaScript) ...
+        
+        // New Features Implementation
+        
+        // Poll functionality
+        const voteBtn = document.getElementById('voteBtn');
+        const pollOptions = document.querySelectorAll('.poll-option');
+        const pollResults = document.querySelector('.poll-results');
+        
+        pollOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                pollOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                
+                // Select the radio button
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+            });
+        });
+        
+        voteBtn.addEventListener('click', function() {
+            const selectedOption = document.querySelector('.poll-option.selected');
+            if (!selectedOption) {
+                alert('कृपया विकल्प चुनें');
+                return;
+            }
+            
+            // Show results
+            pollResults.style.display = 'block';
+            
+            // Scroll to results
+            pollResults.scrollIntoView({behavior: 'smooth'});
+        });
+        
+        // Share poll button
+        const sharePollBtn = document.getElementById('sharePollBtn');
+        sharePollBtn.addEventListener('click', function() {
+            alert('पोल व्हाट्सएप पर शेयर की गई!');
+        });
+        
+        // Petition functionality
+        const signPetitionBtn = document.getElementById('signPetitionBtn');
+        const signatureList = document.querySelector('.signature-list');
+        const signatureCounter = document.querySelector('.signature-counter');
+        
+        signPetitionBtn.addEventListener('click', function() {
+            const name = prompt('हस्ताक्षर के लिए अपना नाम दर्ज करें:');
+            if (name) {
+                // Update counter
+                let count = parseInt(signatureCounter.textContent);
+                count++;
+                signatureCounter.textContent = count + ' हस्ताक्षर';
+                
+                // Add to list
+                const newSignature = document.createElement('div');
+                newSignature.className = 'signature-item hindi-font';
+                newSignature.textContent = name + ', ' + getRandomCity();
+                signatureList.prepend(newSignature);
+                
+                alert('धन्यवाद! आपका हस्ताक्षर सफलतापूर्वक जोड़ा गया।');
+            }
+        });
+        
+        function getRandomCity() {
+            const cities = ['जयपुर', 'जोधपुर', 'बाड़मेर', 'उदयपुर', 'कोटा', 'अजमेर', 'सीकर', 'जैसलमेर'];
+            return cities[Math.floor(Math.random() * cities.length)];
+        }
+        
+        // Chatbot functionality
+        const chatbotButton = document.getElementById('chatbotButton');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const closeChatbot = document.getElementById('closeChatbot');
+        const sendMessage = document.getElementById('sendMessage');
+        const userInput = document.getElementById('userInput');
+        const chatMessages = document.getElementById('chatMessages');
+        
+        chatbotButton.addEventListener('click', function() {
+            chatbotWindow.style.display = 'flex';
+        });
+        
+        closeChatbot.addEventListener('click', function() {
+            chatbotWindow.style.display = 'none';
+        });
+        
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.textContent = text;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        sendMessage.addEventListener('click', function() {
+            if (userInput.value.trim() === '') return;
+            
+            // Add user message
+            addMessage(userInput.value, true);
+            
+            // Generate bot response
+            const botResponse = generateBotResponse(userInput.value);
+            
+            // Add bot response after a delay
+            setTimeout(() => {
+                addMessage(botResponse);
+            }, 1000);
+            
+            // Clear input
+            userInput.value = '';
+        });
+        
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage.click();
+            }
+        });
+        
+        function generateBotResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+            if (lowerMessage.includes('नमस्ते') || lowerMessage.includes('हैलो')) {
+                return 'नमस्ते! आरएलपी सहायक में आपका स्वागत है। आप कैसे मदद कर सकता हूँ?';
+            } else if (lowerMessage.includes('सदस्यता') || lowerMessage.includes('जुड़ना')) {
+                return 'आप हमसे जुड़कर पार्टी के सदस्य बन सकते हैं। सदस्यता फॉर्म के लिए कृपया "हमसे जुड़ें" सेक्शन देखें या यहाँ क्लिक करें: https://yourparty.org/join';
+            } else if (lowerMessage.includes('नीति') || lowerMessage.includes('पॉलिसी')) {
+                return 'राष्ट्रीय लोकतांत्रिक पार्टी किसानों, मजदूरों और युवाओं के हक की लड़ाई लड़ती है। हमारी मुख्य नीतियाँ कृषि सुधार, रोजगार सृजन और महिला सशक्तिकरण पर केंद्रित हैं।';
+            } else if (lowerMessage.includes('कार्यक्रम') || lowerMessage.includes('रैली')) {
+                return 'आगामी कार्यक्रमों के बारे में जानने के लिए कृपया हमारे "इवेंट कैलेंडर" या "समाचार" सेक्शन देखें। अगली रैली 25 जुलाई को बाड़मेर में होगी।';
+            } else if (lowerMessage.includes('दान') || lowerMessage.includes('योगदान')) {
+                return 'आप हमारे कार्यों में योगदान देकर पार्टी को सहयोग कर सकते हैं। दान करने के लिए कृपया "दान प्रबंधन" सेक्शन देखें या सीधे यहाँ क्लिक करें: https://yourparty.org/donate';
+            } else {
+                return 'क्षमा करें, मैं आपके प्रश्न को पूरी तरह समझ नहीं पाया। कृपया कोई अन्य प्रश्न पूछें या हमारी वेबसाइट ब्राउज़ करें।';
+            }
+        }
+        
+        // Login functionality
+        const loginBtn = document.getElementById('loginBtn');
+        const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeLogin = document.getElementById('closeLogin');
+        const loginSubmit = document.getElementById('loginSubmit');
+        const twoFactor = document.getElementById('twoFactor');
+        const memberDashboard = document.getElementById('memberDashboard');
+        const loginForm = document.getElementById('loginForm');
+        const verifyOtp = document.getElementById('verifyOtp');
+        const logoutBtn = document.getElementById('logoutBtn');
+        
+        function openLoginModal() {
+            loginModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLoginModal() {
+            loginModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        loginBtn.addEventListener('click', openLoginModal);
+        mobileLoginBtn.addEventListener('click', openLoginModal);
+        closeLogin.addEventListener('click', closeLoginModal);
+        
+        loginSubmit.addEventListener('click', function() {
+            const mobile = document.getElementById('loginMobile').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!mobile || !password) {
+                alert('कृपया मोबाइल नंबर और पासवर्ड दर्ज करें');
+                return;
+            }
+            
+            // Show two-factor authentication
+            loginForm.style.display = 'none';
+            twoFactor.style.display = 'block';
+        });
+        
+        verifyOtp.addEventListener('click', function() {
+            // Show member dashboard
+            twoFactor.style.display = 'none';
+            memberDashboard.style.display = 'block';
+        });
+        
+        logoutBtn.addEventListener('click', function() {
+            // Reset to login form
+            memberDashboard.style.display = 'none';
+            loginForm.style.display = 'block';
+            document.getElementById('loginMobile').value = '';
+            document.getElementById('loginPassword').value = '';
+        });
+        
+        // Donation chart
+        const donationCtx = document.getElementById('donationChart').getContext('2d');
+        const donationChart = new Chart(donationCtx, {
+            type: 'bar',
+            data: {
+                labels: ['जनवरी', 'फरवरी', 'मार्च', 'अप्रैल', 'मई', 'जून'],
+                datasets: [{
+                    label: 'दान राशि (₹)',
+                    data: [185000, 210000, 175000, 230000, 255000, 290752],
+                    backgroundColor: [
+                        'rgba(44, 151, 75, 0.7)',
+                        'rgba(44, 151, 75, 0.7)',
+                        'rgba(44, 151, 75, 0.7)',
+                        'rgba(44, 151, 75, 0.7)',
+                        'rgba(44, 151, 75, 0.7)',
+                        'rgba(44, 151, 75, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgb(44, 151, 75)',
+                        'rgb(44, 151, 75)',
+                        'rgb(44, 151, 75)',
+                        'rgb(44, 151, 75)',
+                        'rgb(44, 151, 75)',
+                        'rgb(44, 151, 75)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '₹' + value.toLocaleString('hi-IN');
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return 'दान राशि: ₹' + context.parsed.y.toLocaleString('hi-IN');
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Initialize chatbot with welcome message
+        setTimeout(() => {
+            addMessage('नमस्ते! मैं आरएलपी सहायक हूँ। आप पार्टी, नीतियों, कार्यक्रमों या सदस्यता के बारे में क्या जानना चाहते हैं?');
+        }, 1000);
+    </script>
+</body>
+                            </html>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>राष्ट्रीय लोकतांत्रिक पार्टी (RLP) | डॉ. प्रकाश काकड़, बाड़मेर</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         /* All previous CSS remains unchanged */
         
